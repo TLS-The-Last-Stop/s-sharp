@@ -23,6 +23,10 @@ import BlogPageOne from './components/pages/BlogPageOne';
 import ContactPage from './components/pages/ContactPage';
 
 import OAuth2RedirectHandler from './components/pages/OAuth2RedirectHandler';
+import ReportList from "./admin/pages/ReportList";
+import TagList from "./admin/pages/TagList";
+import ChatList from "./admin/pages/ChatList";
+import Layout from "./admin/layout/Layout";
 
 function App() {
   return (
