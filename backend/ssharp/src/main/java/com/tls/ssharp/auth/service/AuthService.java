@@ -85,8 +85,18 @@ public class AuthService {
             .orElseGet(() -> ResponseEntity.status(HttpStatus.FORBIDDEN).body("Refresh Token이 유효하지 않습니다."));
   }
 
-  public ResponseEntity<?> logout(String refreshToken) {
+  public ResponseEntity<?> logout(String refreshToken, HttpServletResponse response) {
     refreshTokenService.deleteRefreshToken(refreshToken);
+
+    Cookie accessTokenCookie = CookieUtil.createAccessTokenCookie(null);
+    accessTokenCookie.setMaxAge(0);
+    response.addCookie(accessTokenCookie);
+
+    Cookie refreshTokenCookie = CookieUtil.createRefreshTokenCookie(null);
+    refreshTokenCookie.setMaxAge(0);
+    response.addCookie(refreshTokenCookie);
+
     return ResponseEntity.ok("로그아웃 성공");
   }
+
 }
