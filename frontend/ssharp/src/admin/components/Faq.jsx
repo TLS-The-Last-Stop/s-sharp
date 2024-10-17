@@ -35,26 +35,25 @@ const ShowMoreButton = styled.button`
     cursor: pointer;
 `
 
-const Faq = ({ onSelectItem }) => {
+const Faq = ({ faqList, onSelectItem }) => {
   const [searchData, setSearchData] = useState('');
   const [showAll, setShowAll] = useState(false);
-  const faq = faqData.faqData;
 
   const topFaq = useMemo(() => (
-    [...faq].sort((a, b) => b.views - a.views).slice(0, 10)
-  ),[faq]);
+    [...faqList].sort((a, b) => b.views - a.views).slice(0, 10)
+  ),[faqList]);
 
   const handleSearch = e => {
     setSearchData(e.target.value);
   };
 
   const filteredFap = useCallback(() => {
-    const dataToFilter = showAll ? faq:topFaq;
+    const dataToFilter = showAll ? faqList:topFaq;
       return dataToFilter.filter(item =>
         item.question.toLowerCase().includes(searchData.toLowerCase()) ||
         item.answer.toLowerCase().includes(searchData.toLowerCase())
       );
-    }, [faq, topFaq, searchData, showAll]
+    }, [faqList, topFaq, searchData, showAll]
   );
 
   const toggleShowAll=()=>{

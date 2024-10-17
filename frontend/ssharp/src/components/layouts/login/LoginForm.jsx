@@ -13,8 +13,8 @@ const LoginForm = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-a
-    try {a
+
+    try {
       // 로그인 요청a
       await axios.post('http://localhost:8080/api/auth/login', {
         email,
