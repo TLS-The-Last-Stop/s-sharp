@@ -29,10 +29,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     if (token != null) {
       System.out.println("JWT Token Found: " + token);
+    } else{
+      System.out.println("토큰 필요");
     }
 
     if (token != null && jwtTokenProvider.validateToken(token)) {
-      System.out.println("JWT Token is valid");
+      System.out.println("맞음");
       String email = jwtTokenProvider.getUserEmailFromJWT(token);
       System.out.println("Email from JWT: " + email);
 
@@ -43,7 +45,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       System.out.println("Setting SecurityContext with Authentication for: " + email);
       SecurityContextHolder.getContext().setAuthentication(authentication);
     } else {
-      System.out.println("JWT Token is invalid or not present");
+      System.out.println("JWT 토큰값이 맞지 않음");
     }
 
     filterChain.doFilter(request, response);
