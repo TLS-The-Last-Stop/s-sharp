@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { IoChatboxEllipsesOutline } from 'react-icons/io5';
 import styled from 'styled-components';
 import Faq from './Faq';
+import {faqService} from "../api/faqService";
 
 const ChatbotDiv = styled.div`
     position: fixed;
@@ -65,14 +66,33 @@ const BackButton = styled.button`
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [faqList, setFaqList] = useState([]);
+
+  useEffect(() => {
+    if(isOpen) loadFaqs();
+  }, [isOpen]);
+
+  const loadFaqs = async ()=>{
+    try{
+      const faqs = await faqService.getAllFaq();
+      setFaqList(faqs.data);
+    }catch(error){
+      console.error('Failed to load FAQs:',error)
+    }
+  }
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
     setSelectedItem(null);
   };
 
-  const handleSelectedItem = item => {
-    setSelectedItem(item);
+  const handleSelectedItem = async (item) => {
+    try{
+      const updatedFaq = await faqService.getFaqById(item.id);
+      setSelectedItem(updatedFaq.data);
+    }catch(error){
+      console.error('Failed to get FAQ details:', error);
+    }
   };
 
   const handleBack = () => {
@@ -97,9 +117,10 @@ const Chatbot = () => {
               <BackButton onClick={handleBack}>뒤로</BackButton>
               <h3>{selectedItem.question}</h3>
               <p>{selectedItem.answer}</p>
+              <p>조회수: {selectedItem.views}</p>
             </DetailView>
           ) : (
-            <Faq onSelectItem={handleSelectedItem} />
+            <Faq faqList={faqList} onSelectItem={handleSelectedItem} />
           )}
         </PopupContent>
       </PopupDiv>
