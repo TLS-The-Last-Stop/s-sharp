@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import AboutMain from './components/pages/About';
@@ -23,48 +23,52 @@ import BlogPageOne from './components/pages/BlogPageOne';
 import ContactPage from './components/pages/ContactPage';
 
 import OAuth2RedirectHandler from './components/pages/OAuth2RedirectHandler';
-import ReportList from "./admin/pages/ReportList";
-import TagList from "./admin/pages/TagList";
-import ChatList from "./admin/pages/ChatList";
-import Layout from "./admin/layout/Layout";
+import ReportList from './admin/pages/ReportList';
+import TagList from './admin/pages/TagList';
+import ChatList from './admin/pages/ChatList';
+import Layout from './admin/layout/Layout';
+
+import Write from './components/pages/Write';
 
 function App() {
   return (
-      <BrowserRouter basename={import.meta.env.VITE_API_URL}>
-        <Routes>
-          <Route path={'/'} element={<HomeOne/>}/>
-          <Route path={'/home-2'} element={<HomeTwo/>}/>
-          <Route path={'/about'} element={<AboutMain/>}/>
+    <BrowserRouter basename={import.meta.env.VITE_API_URL}>
+      <Routes>
+        <Route path={'/'} element={<HomeOne />} />
+        <Route path={'/home-2'} element={<HomeTwo />} />
+        <Route path={'/about'} element={<AboutMain />} />
 
-          <Route path={'/course-1'} element={<CourseOne/>}/>
-          <Route path={'/course-2'} element={<CourseTwo/>}/>
-          <Route path={'/course-3'} element={<CourseThree/>}/>
-          <Route path={'/course-4'} element={<CourseFour/>}/>
-          <Route path={'/course-list'} element={<CourseList/>}/>
+        <Route path={'/course-1'} element={<CourseOne />} />
+        <Route path={'/course-2'} element={<CourseTwo />} />
+        <Route path={'/course-3'} element={<CourseThree />} />
+        <Route path={'/course-4'} element={<CourseFour />} />
+        <Route path={'/course-list'} element={<CourseList />} />
 
-          <Route path={'/course-details/:id'} element={<CourseDetails/>}/>
+        <Route path={'/course-details/:id'} element={<CourseDetails />} />
 
-          <Route path={'/course-details-two/:id'} element={<CourseDetailsTwo/>}/>
+        <Route
+          path={'/course-details-two/:id'}
+          element={<CourseDetailsTwo />}
+        />
 
-          <Route path={'/instructors'} element={<InstructorOne/>}/>
-          <Route path={'/login'} element={<Login/>}/>
-          <Route path={'/register'} element={<Register/>}/>
+        <Route path={'/instructors'} element={<InstructorOne />} />
+        <Route path={'/login'} element={<Login />} />
+        <Route path={'/register'} element={<Register />} />
 
-          <Route path={'/contact'} element={<ContactPage/>}/>
-          <Route path={'/blog'} element={<BlogPageOne/>}/>
-          
-          <Route path={'/oauth2/redirect'} element={<OAuth2RedirectHandler/>}/>
+        <Route path={'/contact'} element={<ContactPage />} />
+        <Route path={'/blog'} element={<BlogPageOne />} />
 
-          <Route path='/admin' element={<Layout/>}>
-            <Route path="reports" element={<ReportList/>}/>
-            <Route path="tags" element={<TagList/>}/>
-            <Route path="chats" element={<ChatList/>}/>
-          </Route>
+        <Route path={'/oauth2/redirect'} element={<OAuth2RedirectHandler />} />
 
-        </Routes>
+        <Route path='/admin' element={<Layout />}>
+          <Route path='reports' element={<ReportList />} />
+          <Route path='tags' element={<TagList />} />
+          <Route path='chats' element={<ChatList />} />
+        </Route>
 
-        
-      </BrowserRouter>
+        <Route path={'/write'} element={<Write />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
