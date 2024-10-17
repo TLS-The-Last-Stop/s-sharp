@@ -1,5 +1,6 @@
 package com.tls.ssharp.report.controller;
 
+import com.tls.ssharp.auth.common.dto.CommonApiResponse;
 import com.tls.ssharp.report.domain.Report;
 import com.tls.ssharp.report.domain.ReportType;
 import com.tls.ssharp.report.domain.dto.ReportApiReponse;
@@ -28,11 +29,9 @@ public class ReportController {
   private final ReportService reportService;
 
   @PostMapping("/posts/{postId}/report")
-  public ResponseEntity<Void> createReport(final @RequestBody ReportApiRequest dto) {
-    log.info("dto {}", dto);
-
+  public CommonApiResponse createReport(final @RequestBody ReportApiRequest dto) {
     reportService.saveReport(dto);
-    return ResponseEntity.status(HttpStatus.CREATED).body(null);
+    return CommonApiResponse.createNoContent("성공!!");
   }
 
   @GetMapping("/reports")
