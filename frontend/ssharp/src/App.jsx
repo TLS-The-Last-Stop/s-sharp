@@ -34,7 +34,7 @@ function App() {
   return (
     <BrowserRouter basename={import.meta.env.VITE_API_URL}>
       <Routes>
-        <Route path={'/'} element={<HomeOne />} />
+        <Route path={'/'} element={<BlogPageOne />} />
         <Route path={'/home-2'} element={<HomeTwo />} />
         <Route path={'/about'} element={<AboutMain />} />
 
