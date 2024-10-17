@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 const Nav = () => {
   const containerRef = useRef(null);
+  const userId = { id: 1 };
 
   useEffect(() => {
     if (containerRef.current) {
@@ -16,6 +17,10 @@ const Nav = () => {
     {
       label: '새글작성',
       link: '/write',
+    },
+    {
+      label: '북마크',
+      link: `/bookmark-list/${userId.id}`,
     },
   ]);
   useEffect(() => {

@@ -8,7 +8,6 @@ import CourseList from './components/pages/CourseList';
 import CourseOne from './components/pages/CourseOne';
 import CourseThree from './components/pages/CourseThree';
 import CourseTwo from './components/pages/CourseTwo';
-import HomeOne from './components/pages/Home01';
 import HomeTwo from './components/pages/Home02';
 
 import CourseDetails from './components/pages/CourseDetails';
@@ -21,6 +20,8 @@ import Register from './components/pages/Register';
 
 import BlogPageOne from './components/pages/BlogPageOne';
 import ContactPage from './components/pages/ContactPage';
+
+import BookMarkList from './components/pages/BookMarkList';
 
 import OAuth2RedirectHandler from './components/pages/OAuth2RedirectHandler';
 import ReportList from './admin/pages/ReportList';
@@ -50,7 +51,7 @@ function App() {
           path={'/course-details-two/:id'}
           element={<CourseDetailsTwo />}
         />
-
+        <Route path={'/bookmark-list/:id'} element={<BookMarkList />} />
         <Route path={'/instructors'} element={<InstructorOne />} />
         <Route path={'/login'} element={<Login />} />
         <Route path={'/register'} element={<Register />} />
