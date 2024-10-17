@@ -51,6 +51,12 @@ function App() {
           
           <Route path={'/oauth2/redirect'} element={<OAuth2RedirectHandler/>}/>
 
+          <Route path='/admin' element={<Layout/>}>
+            <Route path="reports" element={<ReportList/>}/>
+            <Route path="tags" element={<TagList/>}/>
+            <Route path="chats" element={<ChatList/>}/>
+          </Route>
+
         </Routes>
 
         
