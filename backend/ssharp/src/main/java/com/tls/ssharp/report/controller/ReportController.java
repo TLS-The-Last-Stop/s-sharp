@@ -4,6 +4,7 @@ import com.tls.ssharp.auth.common.dto.CommonApiResponse;
 import com.tls.ssharp.report.domain.dto.ReportApiResponse;
 import com.tls.ssharp.report.domain.dto.ReportApiRequest;
 import com.tls.ssharp.report.service.ReportService;
+import com.tls.ssharp.user.entity.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,14 @@ public class ReportController {
   public CommonApiResponse createReport(final @RequestBody ReportApiRequest dto) {
     reportService.saveReport(dto);
     return CommonApiResponse.createNoContent("성공!!");
+  }
+
+  @GetMapping("/post/{postId}/report")
+  public CommonApiResponse<?> checkReport(@PathVariable final String postId, Authentication auth) {
+    UserPrincipal user = (UserPrincipal) auth.getPrincipal();
+    System.out.println("user id => " + user.getId());
+
+    return null;
   }
 
   @GetMapping("/reports")

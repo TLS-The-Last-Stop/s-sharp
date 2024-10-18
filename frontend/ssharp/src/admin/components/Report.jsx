@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { PiSirenBold } from 'react-icons/pi';
 import styled from 'styled-components';
+import { reportService } from '../api/reportSevice';
+import { useParams } from 'react-router-dom';
+import { axiosWithAuth } from '../../utils/authUtils';
 
 const IconWrapper = styled.div`
     width: 72px;
@@ -15,8 +18,11 @@ const IconWrapper = styled.div`
 const Report = () => {
   const [status, setStatus] = useState(false);
 
-  useEffect(() => {
+  const { id } = useParams();
 
+  const auth = axiosWithAuth();
+  useEffect(() => {
+    reportService.isReported(id);
   }, []);
 
   return (

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { axiosWithAuth } from '../../utils/authUtils';
 
 const BASE_URL = 'http://localhost:8080/api';
 
@@ -12,6 +13,15 @@ export const reportService = {
     } catch (error) {
       console.error('Error fetching all reports:', error);
       throw error;
+    }
+  },
+  isReported        : async (postId) => {
+    try {
+      const auth = axiosWithAuth();
+      const response = await auth.get(`${BASE_URL}/post/${postId}/report`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching reports:', error);
     }
   },
   getReportsByPostId: async (postId, page, size) => {
