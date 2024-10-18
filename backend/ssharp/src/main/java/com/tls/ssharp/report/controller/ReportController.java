@@ -1,13 +1,10 @@
 package com.tls.ssharp.report.controller;
 
 import com.tls.ssharp.auth.common.dto.CommonApiResponse;
-import com.tls.ssharp.report.domain.Report;
-import com.tls.ssharp.report.domain.ReportType;
-import com.tls.ssharp.report.domain.dto.ReportApiReponse;
+import com.tls.ssharp.report.domain.dto.ReportApiResponse;
 import com.tls.ssharp.report.domain.dto.ReportApiRequest;
 import com.tls.ssharp.report.service.ReportService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -35,26 +31,29 @@ public class ReportController {
   }
 
   @GetMapping("/reports")
-  public ResponseEntity<String> getAllReport(@RequestParam(value = "page", required = false, defaultValue = "0") String page,
-                                             @RequestParam(value = "size", required = false, defaultValue = "50") String size) {
+  public CommonApiResponse<?> getAllReport(
+          @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+          @RequestParam(value = "size", required = false, defaultValue = "50") int size,
+          @RequestParam(value = "keyword", required = false) String keyword,
+          @RequestParam(value = "searchType", required = false, defaultValue = "all") String searchType) {
 
-    int pageNumber = Integer.parseInt(page);
-    int pageSize = Integer.parseInt(size);
+    if (page > 0) page--;
 
-    if (pageNumber > 0) pageNumber--;
+    Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
 
-    Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("id").descending());
-    Page<Report> allReport = reportService.findAllReport(pageable);
+    //Page<Report> allReport = reportService.findReportsBySearch(pageable);
+    Page<ReportApiResponse> allReport = reportService.findReportsBySearch(pageable, searchType, keyword);
 
-    if (!allReport.hasContent()) return ResponseEntity.noContent().build();
+    if (!allReport.hasContent())
+      return CommonApiResponse.createBadRequest("존재하지 않음");
 
-    return ResponseEntity.status(HttpStatus.OK).body(allReport.getContent().toString());
+    return CommonApiResponse.createCreated("전체 신고 목록", allReport);
   }
 
   @GetMapping("/post/{postId}/reports")
-  public ResponseEntity<List<ReportApiReponse>> getAllReports(@PathVariable(value = "postId", required = false) Long postId,
-                                                              @RequestParam(value = "page", required = false, defaultValue = "0") String page,
-                                                              @RequestParam(value = "size", required = false, defaultValue = "50") String size) {
+  public ResponseEntity<List<ReportApiResponse>> getAllReports(@PathVariable(value = "postId", required = false) Long postId,
+                                                               @RequestParam(value = "page", required = false, defaultValue = "0") String page,
+                                                               @RequestParam(value = "size", required = false, defaultValue = "50") String size) {
 
     int pageNumber = Integer.parseInt(page);
     int pageSize = Integer.parseInt(size);
@@ -62,7 +61,7 @@ public class ReportController {
     if (pageNumber > 0) pageNumber--;
 
     PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by("id").descending());
-    List<ReportApiReponse> list = reportService.findReportByPostId(postId, pageRequest);
+    List<ReportApiResponse> list = reportService.findReportByPostId(postId, pageRequest);
 
     return ResponseEntity.status(HttpStatus.OK).body(list);
   }

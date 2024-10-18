@@ -3,7 +3,7 @@ package com.tls.ssharp.report.service;
 import com.tls.ssharp.post.entity.Post;
 import com.tls.ssharp.post.repository.PostRepository;
 import com.tls.ssharp.report.domain.Report;
-import com.tls.ssharp.report.domain.dto.ReportApiReponse;
+import com.tls.ssharp.report.domain.dto.ReportApiResponse;
 import com.tls.ssharp.report.domain.dto.ReportApiRequest;
 import com.tls.ssharp.report.repository.ReportRepository;
 import com.tls.ssharp.user.entity.User;
@@ -12,7 +12,6 @@ import com.tls.ssharp.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,18 +41,25 @@ public class ReportService {
   }
 
 
-  @Transactional(readOnly = true)
+/*  @Transactional(readOnly = true)
   public Page<Report> findAllReport(Pageable pageable) {
     return reportRepository.findAll(pageable);
+  }*/
+
+  @Transactional(readOnly = true)
+  public Page<ReportApiResponse> findReportsBySearch(Pageable pageable, String searchType, String keyword) {
+    Page<Report> reports = reportRepository.findReportsBySearchConditions(searchType, keyword, pageable);
+
+    return reports.map(report -> ReportApiResponse.fromEntity(report, report.getReportUser()));
   }
 
   @Transactional(readOnly = true)
-  public List<ReportApiReponse> findReportByPostId(Long postId, Pageable pageable) {
+  public List<ReportApiResponse> findReportByPostId(Long postId, Pageable pageable) {
 
     List<Report> report = reportRepository.findByPostId(postId);
-    List<ReportApiReponse> allRerportByPostId = new ArrayList<>();
+    List<ReportApiResponse> allRerportByPostId = new ArrayList<>();
     for (Report r : report) {
-      allRerportByPostId.add(ReportApiReponse.fromEntity(r, r.getPost().getUser()));
+      allRerportByPostId.add(ReportApiResponse.fromEntity(r, r.getPost().getUser()));
     }
 
     return allRerportByPostId;
