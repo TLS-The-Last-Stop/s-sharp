@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ReportApiReponse {
+public class ReportApiResponse {
 
   private Long id;
   private Long postId;
+  private String title;
   private String postUserNickname;
   private String reportUserNickname;
   private String reason;
@@ -24,10 +25,11 @@ public class ReportApiReponse {
   private ReportStatus reportStatus;
   private LocalDateTime createdAt;
 
-  public static ReportApiReponse fromEntity(Report report, User postUser) {
-    return ReportApiReponse.builder()
+  public static ReportApiResponse fromEntity(Report report, User postUser) {
+    return ReportApiResponse.builder()
             .id(report.getId())
             .postId(report.getPost().getId())
+            .title(report.getPost().getTitle())
             .postUserNickname(postUser.getNickname())
             .reportUserNickname(report.getReportUser().getNickname())
             .reason(report.getReason())

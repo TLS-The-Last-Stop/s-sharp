@@ -26,7 +26,7 @@ import BookMarkList from './components/pages/BookMarkList';
 import OAuth2RedirectHandler from './components/pages/OAuth2RedirectHandler';
 import ReportList from './admin/pages/ReportList';
 import TagList from './admin/pages/TagList';
-import ChatList from './admin/pages/ChatList';
+import FaqList from './admin/pages/FaqList';
 import Layout from './admin/layout/Layout';
 
 import Write from './components/pages/Write';
@@ -61,10 +61,10 @@ function App() {
 
         <Route path={'/oauth2/redirect'} element={<OAuth2RedirectHandler />} />
 
-        <Route path='/admin' element={<Layout />}>
-          <Route path='reports' element={<ReportList />} />
-          <Route path='tags' element={<TagList />} />
-          <Route path='chats' element={<ChatList />} />
+        <Route path="/admin" element={<Layout />}>
+          <Route path="reports" element={<ReportList />} />
+          <Route path="tags" element={<TagList />} />
+          <Route path="faqs" element={<FaqList />} />
         </Route>
 
         <Route path={'/write'} element={<Write />} />
