@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -16,4 +18,7 @@ public class Tag extends BaseEntity {
 
   @Column(length = 50, nullable = false, unique = true)
   private String name;
+
+  @ManyToMany(mappedBy = "tags")
+  private List<Post> posts;
 }

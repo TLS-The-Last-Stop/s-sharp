@@ -40,6 +40,14 @@ public class Post extends BaseEntity {
   @Column(name = "is_deleted")
   private Boolean isDeleted;
 
+  @ManyToMany
+  @JoinTable(
+          name = "post_tags",
+          joinColumns = @JoinColumn(name = "post_id"),
+          inverseJoinColumns = @JoinColumn(name = "tag_id")
+  )
+  private List<Tag> tags;
+
 //  @OneToMany(mappedBy = "post")
 //  private List<Review> reviews;
 
