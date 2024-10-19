@@ -3,13 +3,16 @@ package com.tls.ssharp.bookmark.entity;
 import com.tls.ssharp.auth.common.entity.BaseEntity;
 import com.tls.ssharp.post.entity.Post;
 import com.tls.ssharp.user.entity.User;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import jakarta.persistence.*;
 
-@Data
-@NoArgsConstructor
+import java.time.LocalDateTime;
+
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "bookmarks")
 public class Bookmark extends BaseEntity {
 
@@ -24,4 +27,10 @@ public class Bookmark extends BaseEntity {
   @ManyToOne
   @JoinColumn(name = "post_id")
   private Post post;
+
+  @Column(name = "created_at")
+  private LocalDateTime createdAt;
+
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
 }
