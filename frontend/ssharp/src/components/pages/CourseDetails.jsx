@@ -15,16 +15,13 @@ const PostSideDiv = styled.div`
 `;
 
 const CourseDetails01 = () => {
-  const currentUser = { id: 1, name: '김다은' };
-  const currentPost = { id: 2, name: '게시글1' };
-
   return (
     <div className="course-page">
       <Layout>
         <CourseDetails />
         <PostSideDiv>
           <ShareButton />
-          <BookMarkButton userId={currentUser.id} postId={currentPost.id} />
+          <BookMarkButton />
           <Report />
         </PostSideDiv>
       </Layout>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BookmarkIcon, BookmarkCheckIcon } from 'lucide-react';
 import { axiosWithAuth } from '../../../utils/authUtils';
+import { useParams } from 'react-router-dom'; // useParams를 import
 
-const BookMarkButton = ({ userId, postId }) => {
+const BookMarkButton = ({ userId }) => {
+  const { id: postId } = useParams(); // URL에서 postId를 가져옴
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
@@ -13,10 +15,10 @@ const BookMarkButton = ({ userId, postId }) => {
     try {
       const axiosInstance = axiosWithAuth();
       const response = await axiosInstance.get(
-        `http://localhost:8080/api/bookmark/status`,
-        {
-          params: { userId, postId },
-        }
+          `http://localhost:8080/api/bookmark/status`,
+          {
+            params: { userId, postId },
+          }
       );
       setIsBookmarked(response.data.isBookmarked);
     } catch (error) {
@@ -41,8 +43,8 @@ const BookMarkButton = ({ userId, postId }) => {
   };
 
   return (
-    <div>
-      <style>{`
+      <div>
+        <style>{`
         .bookmark-button {
           border: none;
           cursor: pointer;  
@@ -66,17 +68,17 @@ const BookMarkButton = ({ userId, postId }) => {
         }
       `}</style>
 
-      <button
-        onClick={toggleBookmark}
-        className={`bookmark-button ${isBookmarked ? 'active' : ''}`}
-      >
-        {isBookmarked ? (
-          <BookmarkCheckIcon size={27} color='white' />
-        ) : (
-          <BookmarkIcon size={27} color='white' />
-        )}
-      </button>
-    </div>
+        <button
+            onClick={toggleBookmark}
+            className={`bookmark-button ${isBookmarked ? 'active' : ''}`}
+        >
+          {isBookmarked ? (
+              <BookmarkCheckIcon size={27} color='white' />
+          ) : (
+              <BookmarkIcon size={27} color='white' />
+          )}
+        </button>
+      </div>
   );
 };
 
