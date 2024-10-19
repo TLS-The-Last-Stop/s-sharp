@@ -11,6 +11,10 @@ import com.tls.ssharp.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BookmarkServiceImpl implements BookmarkService {
@@ -19,28 +23,46 @@ public class BookmarkServiceImpl implements BookmarkService {
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
 
+	public List<Bookmark> findAll() {
+		return bookmarkRepository.findAll();
+	}
 	@Override
-	public Bookmark saveBookmark(BookmarkRequest bookmarkRequest) {
-		Bookmark bookmark = bookmarkRepository.findByPostId(bookmarkRequest.getPostId());
-		if (bookmark == null) {
-			bookmark = new Bookmark();
-			User user = userRepository.findById(bookmarkRequest.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
-			bookmark.setUser(user);
+	public boolean Bookmark(BookmarkRequest bookmarkRequest) {
+//		System.out.println("bookmarkRequest.getPostId() = " + bookmarkRequest.getPostId());
+//		System.out.println("bookmarkRequest.getUserId() = " + bookmarkRequest.getUserId());
 
-			Post post = postRepository.findById(bookmarkRequest.getPostId()).orElseThrow(() -> new RuntimeException("Post not found"));
-			bookmark.setPost(post);
+		User user = userRepository.findById(bookmarkRequest.getUserId())
+						.orElseThrow(() -> new RuntimeException("User not found"));
 
-			System.out.println("post.getId() = " + post.getId());
-			System.out.println("bookmarkRequest.getPostId() = " + bookmarkRequest.getPostId());
+		Post post = postRepository.findById(bookmarkRequest.getPostId())
+						.orElseThrow(() -> new RuntimeException("Post not found"));
 
-			System.out.println("user.getId() = " + user.getId());
-			System.out.println("bookmarkRequest.getUserId() = " + bookmarkRequest.getUserId());
+		Bookmark existingBookmark = bookmarkRepository.findByUserAndPost(user, post);
 
-			return bookmarkRepository.save(bookmark);
-
+		if (existingBookmark != null) {
+			bookmarkRepository.delete(existingBookmark);
 		} else {
-			throw new RuntimeException("이미 있음요 ^^");
+			Bookmark newBookmark = Bookmark.builder()
+							.user(user)
+							.post(post)
+							.createdAt(LocalDateTime.now())
+							.build();
+			bookmarkRepository.save(newBookmark);
 		}
+		return false;
+	}
+
+	@Override
+	public boolean isBookmarked(Long userId, Long postId) {
+		User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+		Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
+		return bookmarkRepository.findByUserAndPost(user, post) != null;
+	}
+
+	@Override
+	public List<Bookmark> getBookMarkList(Long userId) {
+	List<Bookmark> bookmarkList = bookmarkRepository.findAll();
+		return bookmarkList;
 	}
 
 }
