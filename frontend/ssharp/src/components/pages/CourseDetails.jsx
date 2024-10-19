@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 const PostSideDiv = styled.div`
     position: fixed;
     left: 20px;
-    top: 375px;
+    top: 330px;
     z-index: 1000;
 `;
 
@@ -23,8 +23,8 @@ const CourseDetails01 = () => {
             <Layout>
                 <CourseDetails />
                 <PostSideDiv>
-                    <ShareButton />
                     <BookMarkButton postId={postId} />
+                    <ShareButton />
                     <Report />
                 </PostSideDiv>
             </Layout>
