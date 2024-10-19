@@ -1,58 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { BookmarkIcon, BookmarkCheckIcon } from 'lucide-react';
-import { axiosWithAuth } from '../../../utils/authUtils';
-import { useParams } from 'react-router-dom'; // useParams를 import
+import React, {useEffect, useState} from 'react';
+import {BookmarkCheckIcon, BookmarkIcon} from 'lucide-react';
+import {axiosWithAuth} from '../../../utils/authUtils';
+import {useParams} from 'react-router-dom';
 
-const BookMarkButton = ({ userId }) => {
-  const { id: postId } = useParams(); // URL에서 postId를 가져옴
-  const [isBookmarked, setIsBookmarked] = useState(false);
+const BookMarkButton = ({userId}) => {
+    const {id: postId} = useParams();
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    checkBookmarkStatus();
-  }, [userId, postId]);
+    useEffect(() => {
+        const checkBookmarkStatus = async () => {
+            try {
+                const axiosInstance = axiosWithAuth();
+                const {data} = await axiosInstance.get('http://localhost:8080/api/bookmark/status', {
+                    params: {userId, postId},
+                });
+                if (data) {
+                    setIsBookmarked(data.isBookmarked);
+                }
+            } catch (error) {
+                console.error('Failed to check bookmark status:', error);
+            }
+        };
 
-  const checkBookmarkStatus = async () => {
-    try {
-      const axiosInstance = axiosWithAuth();
-      const response = await axiosInstance.get(
-          `http://localhost:8080/api/bookmark/status`,
-          {
-            params: { userId, postId },
-          }
-      );
-      setIsBookmarked(response.data.isBookmarked);
-    } catch (error) {
-      console.error('북마크 상태 확인 실패:', error);
-    }
-  };
+        checkBookmarkStatus();
+    }, [userId, postId]);
 
-  const toggleBookmark = async () => {
-    try {
-      const axiosInstance = axiosWithAuth();
-      await axiosInstance.post('http://localhost:8080/api/bookmark', {
-        userId: userId,
-        postId: postId,
-      });
-      console.log('북마크 토글 성공:', userId, postId);
-      setIsBookmarked(!isBookmarked);
-    } catch (error) {
-      console.error('북마크 토글 실패:', error);
-      console.log('유저', userId);
-      console.log('게시글id', postId);
-    }
-  };
+    const toggleBookmark = async () => {
+        try {
+            const axiosInstance = axiosWithAuth();
+            await axiosInstance.post('http://localhost:8080/api/bookmark', {
+                userId,
+                postId,
+            });
+            setIsBookmarked((prev) => !prev);
+            setIsAnimating(true);
+            setTimeout(() => setIsAnimating(false), 400);
+        } catch (error) {
+            console.error('Failed to toggle bookmark:', error);
+        }
+    };
 
-  return (
-      <div>
-        <style>{`
+    return (
+        <div>
+            <style>{`
         .bookmark-button {
           border: none;
-          cursor: pointer;  
+          cursor: pointer;
         }
 
         .bookmark-button.active {
-          background-color: #2f2d51; 
-          animation: scaleAnimation 0.2s ease 2; 
+          background-color: #2f2d51;
+        }
+
+        .bookmark-button.animate {
+          animation: scaleAnimation 0.2s ease 2;
         }
 
         @keyframes scaleAnimation {
@@ -63,23 +65,23 @@ const BookMarkButton = ({ userId }) => {
             transform: scale(1.2);
           }
           100% {
-            transform: scale(1); 
+            transform: scale(1);
           }
         }
       `}</style>
 
-        <button
-            onClick={toggleBookmark}
-            className={`bookmark-button ${isBookmarked ? 'active' : ''}`}
-        >
-          {isBookmarked ? (
-              <BookmarkCheckIcon size={27} color='white' />
-          ) : (
-              <BookmarkIcon size={27} color='white' />
-          )}
-        </button>
-      </div>
-  );
+            <button
+                onClick={toggleBookmark}
+                className={`bookmark-button ${isBookmarked ? 'active' : ''} ${isAnimating ? 'animate' : ''}`}
+            >
+                {isBookmarked ? (
+                    <BookmarkCheckIcon size={27} color="white"/>
+                ) : (
+                    <BookmarkIcon size={27} color="white"/>
+                )}
+            </button>
+        </div>
+    );
 };
 
 export default BookMarkButton;

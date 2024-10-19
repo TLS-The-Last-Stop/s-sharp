@@ -19,34 +19,37 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BookmarkController {
 
-  private final BookmarkService bookmarkService;
+    private final BookmarkService bookmarkService;
 
-  @PostMapping("/bookmark")
-  public CommonApiResponse markBookmark(@RequestBody BookmarkRequest bookmarkRequest, Authentication authentication) {
-    if (authentication == null || authentication.getPrincipal() == null) {
-      return CommonApiResponse.createError("인증 정보가 올바르지 않습니다.");
+    @PostMapping("/bookmark")
+    public CommonApiResponse markBookmark(@RequestBody BookmarkRequest bookmarkRequest, Authentication authentication) {
+        if (authentication == null || authentication.getPrincipal() == null) {
+            return CommonApiResponse.createError("인증 정보가 올바르지 않습니다.");
+        }
+
+        Long userId = ((UserPrincipal) authentication.getPrincipal()).getId();
+        bookmarkRequest.setUserId(userId);
+
+        boolean isNewBookmark = bookmarkService.Bookmark(bookmarkRequest);
+        String message = isNewBookmark ? "북마크가 추가되었습니다." : "북마크가 제거되었습니다.";
+
+        return CommonApiResponse.createNoContent(message);
     }
-    UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
-    Long userId = user.getId();
-    bookmarkRequest.setUserId(userId);
 
-    boolean isNewBookmark = bookmarkService.Bookmark(bookmarkRequest);
-    String message = isNewBookmark ? "북마크가 추가되었습니다." : "북마크가 제거되었습니다.";
-    return CommonApiResponse.createNoContent(message);
-  }
 
-  @GetMapping("/bookmark/status")
-  public ResponseEntity<Map<String, Boolean>> checkBookmarkStatus(@RequestParam Long userId, @RequestParam Long postId) {
-    boolean isBookmarked = bookmarkService.isBookmarked(userId, postId);
-    Map<String, Boolean> response = Collections.singletonMap("isBookmarked", isBookmarked);
-    return ResponseEntity.ok(response);
-  }
+    @GetMapping("/bookmark/status")
+    public ResponseEntity<Map<String, Boolean>> checkBookmarkStatus(Authentication authentication, @RequestParam Long postId) {
+        Long userId = ((UserPrincipal) authentication.getPrincipal()).getId();
+        boolean isBookmarked = bookmarkService.isBookmarked(userId, postId);
+        return ResponseEntity.ok(Collections.singletonMap("isBookmarked", isBookmarked));
+    }
 
-  @GetMapping("/bookmark-list")
-  public ResponseEntity<List<Bookmark>> getBookmarkList(Authentication authentication) {
-    UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
-    Long userId = user.getId();
-    List<Bookmark> bookmarkList = bookmarkService.getBookMarkList(userId);
-    return ResponseEntity.ok(bookmarkList);
-  }
+
+    @GetMapping("/bookmark-list")
+    public ResponseEntity<List<Bookmark>> getBookmarkList(Authentication authentication) {
+        UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
+        Long userId = user.getId();
+        List<Bookmark> bookmarkList = bookmarkService.getBookMarkList(userId);
+        return ResponseEntity.ok(bookmarkList);
+    }
 }

@@ -6,28 +6,31 @@ import BookMarkButton from '../widgets/bookmark/BookMarkButton';
 import { ToastContainer } from 'react-toastify';
 import Report from '../../admin/components/Report';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 const PostSideDiv = styled.div`
     position: fixed;
     left: 20px;
     top: 375px;
-    zIndex: 1000;
+    z-index: 1000;
 `;
 
 const CourseDetails01 = () => {
-  return (
-    <div className="course-page">
-      <Layout>
-        <CourseDetails />
-        <PostSideDiv>
-          <ShareButton />
-          <BookMarkButton />
-          <Report />
-        </PostSideDiv>
-      </Layout>
-      <ToastContainer />
-    </div>
-  );
+    const { id: postId } = useParams();
+
+    return (
+        <div className="course-page">
+            <Layout>
+                <CourseDetails />
+                <PostSideDiv>
+                    <ShareButton />
+                    <BookMarkButton postId={postId} />
+                    <Report />
+                </PostSideDiv>
+            </Layout>
+            <ToastContainer />
+        </div>
+    );
 };
 
 export default CourseDetails01;
