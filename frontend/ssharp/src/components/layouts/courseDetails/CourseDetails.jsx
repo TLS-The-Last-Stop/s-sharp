@@ -217,7 +217,14 @@ const CourseDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='post-tags'>태그 예정</div>
+                  <div className='post-tags'>
+                    {post.tags &&
+                      post.tags.map((tag, index) => (
+                        <span key={index} className='tag'>
+                          #{tag}
+                        </span>
+                      ))}
+                  </div>
                   <h1 className='course-title'>{post.title}</h1>
                   <p className='course-content'>{post.content}</p>
                 </div>

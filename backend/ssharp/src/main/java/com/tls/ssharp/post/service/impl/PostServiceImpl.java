@@ -67,18 +67,31 @@ public class PostServiceImpl implements PostService {
 
 
     public PostResponse getPostById(long id) {
-        Optional<Post> post = postRepository.findById(id);
+        Optional<Post> postOptional = postRepository.findById(id);
         PostResponse postResponse = new PostResponse();
-        if (post.isPresent()) {
+        if (postOptional.isPresent()) {
+            Post post = postOptional.get();
             postResponse.setId(id);
-            postResponse.setTitle(post.get().getTitle());
-            postResponse.setContent(getStyledText(post.get().getContent()));
+            postResponse.setTitle(post.getTitle());
+            postResponse.setContent(getHtmlContent(post.getContent()));
+            postResponse.setCreatedAt(post.getCreatedAt());
+
+            List<String> tagNames = new ArrayList<>();
+            for (Tag tag : post.getTags()) {
+                tagNames.add(tag.getName());
+            }
+            postResponse.setTags(tagNames);
         }
         return postResponse;
     }
 
     public void deletePostById(long id) {
         postRepository.deleteById(id);
+    }
+
+    public String getHtmlContent(String htmlContent) {
+        Document document = Jsoup.parse(htmlContent);
+        return document.body().text();
     }
 
     public String getStyledText(String htmlContent) {
