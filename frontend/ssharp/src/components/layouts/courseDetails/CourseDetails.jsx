@@ -208,23 +208,15 @@ const CourseDetails = () => {
                       </div>
 
                       <div className='rating review-stars-rated'>
-                        평점:&nbsp;
+                      &nbsp; 평점:&nbsp;
                         {[...ARRAY].map((_, i) => (
                           <a href='#' key={i}>
-                            <i className='fa fa-star'></i>
-                          </a>
+                          <i className={`fa fa-star${i < avg ? '' : '-o'}`}></i>                          </a>
                         ))}
                       </div>
                     </div>
                   </div>
-                  <div className='post-tags'>
-                    {post.tags &&
-                      post.tags.map((tag, index) => (
-                        <span key={index} className='tag'>
-                          #{tag}
-                        </span>
-                      ))}
-                  </div>
+                  <div className='post-tags'>태그 예정</div>
                   <h1 className='course-title'>{post.title}</h1>
                   <p className='course-content'>{post.content}</p>
                 </div>
