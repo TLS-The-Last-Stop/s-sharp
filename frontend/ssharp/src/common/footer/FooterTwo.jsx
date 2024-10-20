@@ -11,149 +11,88 @@ const FooterTwo = () => {
   }
 
   return (
-    <>
-      <section className='footer'>
-        <div className='footer-mid'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-xl-3 me-auto col-sm-8'>
-                <div className='footer-logo mb-3'>
-                  <img
-                    src='assets/images/logo-white.png'
-                    alt=''
-                    className='img-fluid'
-                  />
+      <>
+        <section className='footer'>
+          <div className='footer-mid'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-3 me-auto col-sm-8'>
+                  <div className='footer-logo mb-3'>
+                    <img
+                        src={`${import.meta.env.VITE_API_URL}/assets/images/logo.png`}
+                        alt='Logo'
+                        className='img-fluid'
+                    />
+                  </div>
+                  <div className='widget footer-widget mb-5 mb-lg-0'>
+                    <p>
+                      학생 학습 정리 플랫폼을 통해 학생들이 학습 내용을 정리하고 공유할 수 있는 공간을 제공합니다. 스스로 학습을 체계적으로 관리하고, 타인의 자료를 참고하여 학습의 질을 높입니다.
+                    </p>
+                  </div>
                 </div>
-                <div className='widget footer-widget mb-5 mb-lg-0'>
-                  <p>
-                    Edumel is a Bootstrap Template for online courses education
-                    websites support multiple courses
-                  </p>
-                </div>
-              </div>
 
-              <div className='col-xl-2 col-sm-4'>
-                <div className='footer-widget mb-5 mb-xl-0'>
-                  <h5 className='widget-title'>Explore</h5>
-                  <ul className='list-unstyled footer-links'>
-                    <li>
-                      <Link to='#'>About us</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Contact us</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Services</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Support</Link>
-                    </li>
-                  </ul>
+                <div className='col-xl-2 col-sm-4'>
+                  <div className='footer-widget mb-5 mb-xl-0'>
+                    <h6 className='text-white'>전화번호</h6>
+                    <p>01020241021</p>
+                    <ul className='list-unstyled footer-links'>
+                      <li>
+                        <h6 className='text-white'>이메일</h6>
+                        <Link to='ssharp@gmail.com'>ssharp@gmail.com</Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
 
-              <div className='col-xl-2 col-sm-4'>
-                <div className='footer-widget mb-5 mb-xl-0'>
-                  <h5 className='widget-title '>Categories</h5>
-                  <ul className='list-unstyled footer-links'>
-                    <li>
-                      <Link to='#'>SEO Business</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Digital Marketing</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Graphic Design</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Social Marketing</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className='col-xl-2 col-sm-4'>
-                <div className='footer-widget mb-5 mb-xl-0'>
-                  <h5 className='widget-title'>Links</h5>
-                  <ul className='list-unstyled footer-links'>
-                    <li>
-                      <Link to='#'>News & Blogs</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Privacy Policy</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Support</Link>
-                    </li>
-                    <li>
-                      <Link to='#'>Return Policy</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className='col-xl-2 col-sm-4'>
-                <div className='footer-widget mb-5 mb-xl-0'>
-                  <h5 className='widget-title'>Address</h5>
-                  <ul className='list-unstyled footer-links'>
-                    <li>
-                      <h6 className='text-white'>Phone</h6>
-                      <Link to='#'>+0800 327 8534</Link>
-                    </li>
-                    <li>
-                      <h6 className='text-white'>Email</h6>
-                      <Link to='#'>support@tutori.com</Link>
-                    </li>
-                  </ul>
-                  <div className='footer-socials mt-4'>
-                    <Link to='#'>
-                      <i className='fab fa-facebook-f'></i>
-                    </Link>
-                    <Link to='#'>
-                      <i className='fab fa-twitter'></i>
-                    </Link>
-                    <Link to='#'>
-                      <i className='fab fa-linkedin-in'></i>
-                    </Link>
-                    <Link to='#'>
-                      <i className='fab fa-pinterest'></i>
-                    </Link>
+                <div className='col-xl-2 col-sm-4'>
+                  <div className='footer-widget mb-5 mb-xl-0'>
+                    <h5 className='widget-title'>정보</h5>
+                    <ul className='list-unstyled footer-links'>
+                      <li>
+                        <Link to='#'>이용약관</Link>
+                      </li>
+                      <li>
+                        <Link to='#'>개인정보처리방침</Link>
+                      </li>
+                      <li>
+                        <Link to='#'>서비스소개</Link>
+                      </li>
+                      <li>
+                        <Link to='#'>광고상품 소개</Link>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='footer-btm'>
-          <div className='container'>
-            <div className='row align-items-center'>
-              <div className='col-xl-6 col-sm-12 col-lg-6'>
-                <p className='mb-0 copyright text-sm-center text-lg-start'>
-                  © 2023 Edumel All rights reserved by{' '}
-                  <Link to='https://themeturn.com' rel='nofollow'>
-                    Pxelcode
-                  </Link>{' '}
-                </p>
-              </div>
-              <div className='col-xl-6 col-sm-12 col-lg-6'>
-                <div className='footer-btm-links text-start text-sm-center text-lg-end'>
-                  <Link to='#'>Legal</Link>
-                  <Link to='#'>Supports</Link>
-                  <Link to='#'>Terms</Link>
+          <div className='footer-btm'>
+            <div className='container'>
+              <div className='row align-items-center'>
+                <div className='col-xl-6 col-sm-12 col-lg-6'>
+                  <p className='mb-0 copyright text-sm-center text-lg-start'>
+                    © 2024 TLS. All rights reserved.
+                  </p>
+                </div>
+                <div className='col-xl-6 col-sm-12 col-lg-6'>
+                  <div className='footer-btm-links text-start text-sm-center text-lg-end'>
+                    <Link to='#'>법적 고지</Link>
+                    <Link to='#'>지원</Link>
+                    <Link to='#'>약관</Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='fixed-btm-top' onClick={moveToTop}>
-          <Link to='#top-header' className='js-scroll-trigger scroll-to-top'>
-            <i className='fa fa-angle-up'></i>
-          </Link>
-        </div>
-      </section>
-    </>
+          <div className='fixed-btm-top' onClick={moveToTop}>
+            <Link to='#top-header' className='js-scroll-trigger scroll-to-top'>
+              <i className='fa fa-angle-up'></i>
+            </Link>
+          </div>
+        </section>
+      </>
   );
 };
 
