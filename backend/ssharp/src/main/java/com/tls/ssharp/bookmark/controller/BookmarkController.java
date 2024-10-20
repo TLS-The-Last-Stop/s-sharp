@@ -2,7 +2,7 @@ package com.tls.ssharp.bookmark.controller;
 
 import com.tls.ssharp.auth.common.dto.CommonApiResponse;
 import com.tls.ssharp.bookmark.dto.request.BookmarkRequest;
-import com.tls.ssharp.bookmark.entity.Bookmark;
+import com.tls.ssharp.bookmark.dto.response.BookmarkResponse;
 import com.tls.ssharp.bookmark.service.BookmarkService;
 import com.tls.ssharp.user.entity.UserPrincipal;
 import lombok.RequiredArgsConstructor;
@@ -46,10 +46,11 @@ public class BookmarkController {
 
 
     @GetMapping("/bookmark-list")
-    public ResponseEntity<List<Bookmark>> getBookmarkList(Authentication authentication) {
+    public ResponseEntity<List<BookmarkResponse>> getBookmarkList(Authentication authentication) {
         UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
         Long userId = user.getId();
-        List<Bookmark> bookmarkList = bookmarkService.getBookMarkList(userId);
+        List<BookmarkResponse> bookmarkList = bookmarkService.getBookmarkList(userId);
         return ResponseEntity.ok(bookmarkList);
     }
+
 }

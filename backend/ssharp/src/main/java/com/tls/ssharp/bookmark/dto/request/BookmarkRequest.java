@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BookmarkRequest {
-	Long userId;
-	Long postId;
+    Long userId;
+    Long postId;
 }
