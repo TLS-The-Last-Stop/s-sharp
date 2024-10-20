@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const ModalBackground = styled.div`
@@ -39,7 +39,7 @@ const Button = styled.button`
     margin-right: 10px;
 `;
 
-const ReportModal = ({ isOpen, onClose, onSubmit }) => {
+const ReportModal = ({isOpen, onClose, onSubmit}) => {
   const [reportType, setReportType] = useState('');
   const [reason, setReason] = useState('');
 
@@ -48,33 +48,35 @@ const ReportModal = ({ isOpen, onClose, onSubmit }) => {
       alert('신고 유형을 선택해주세요.');
       return;
     }
-    onSubmit({ reportType, reason });
+    onSubmit({reportType, reason});
     onClose();
+    setReportType('');
+    setReason('');
   };
 
   if (!isOpen) return null;
 
   return (
-    <ModalBackground>
-      <ModalContent>
-        <h2>신고하기</h2>
-        <Select value={reportType} onChange={(e) => setReportType(e.target.value)}>
-          <option value="">신고 유형 선택</option>
-          <option value="음란물">음란물</option>
-          <option value="홍보">홍보</option>
-          <option value="혐오발언">혐오발언</option>
-          <option value="정치질">정치질</option>
-          <option value="기타사유">기타사유</option>
-        </Select>
-        <TextArea
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          placeholder="신고 이유를 입력해주세요."
-        />
-        <Button onClick={handleSubmit}>제출</Button>
-        <Button onClick={onClose}>취소</Button>
-      </ModalContent>
-    </ModalBackground>
+      <ModalBackground>
+        <ModalContent>
+          <h2>신고하기</h2>
+          <Select value={reportType} onChange={(e) => setReportType(e.target.value)}>
+            <option value="">신고 유형 선택</option>
+            <option value="음란물">음란물</option>
+            <option value="홍보">홍보</option>
+            <option value="혐오발언">혐오발언</option>
+            <option value="정치질">정치질</option>
+            <option value="기타사유">기타사유</option>
+          </Select>
+          <TextArea
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              placeholder="신고 이유를 입력해주세요."
+          />
+          <Button onClick={handleSubmit}>제출</Button>
+          <Button onClick={onClose}>취소</Button>
+        </ModalContent>
+      </ModalBackground>
   );
 };
 

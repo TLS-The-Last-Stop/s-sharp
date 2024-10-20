@@ -44,7 +44,13 @@ const Report = () => {
   const handleSubmitReport = async (reportData) => {
     reportData.postId = id;
     try {
-      await reportService.createReport(id, reportData);
+      const result = await reportService.createReport(id, reportData);
+
+      if (result.status === 400) {
+        alert(result.message)
+        return;
+      }
+
       setReported(true);
       alert('신고 접수가 되었습니다.');
     } catch (error) {
