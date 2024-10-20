@@ -12,5 +12,5 @@ public interface PostService {
   List<PostResponse> getAllPost();
   PostResponse getPostById(long id);
   void updatePostById(long id, PostRequest postRequest, Authentication authentication);
-  void deletePostById(long id);
+  void deletePostById(long id, Authentication authentication);
 }

@@ -1,6 +1,7 @@
 package com.tls.ssharp.post.entity;
 
 import com.tls.ssharp.auth.common.entity.BaseEntity;
+import com.tls.ssharp.bookmark.entity.Bookmark;
 import com.tls.ssharp.post.dto.request.PostRequest;
 import com.tls.ssharp.review.entity.Review;
 import com.tls.ssharp.user.entity.User;
@@ -42,11 +43,11 @@ public class Post extends BaseEntity {
   )
   private List<Tag> tags;
 
-  @OneToMany(mappedBy = "post")
+  @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)
   private List<Review> reviews;
 
-//  @OneToMany(mappedBy = "post")
-//  private List<Bookmark> bookmarks;
+  @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<Bookmark> bookmarks;
 //
 //  @OneToMany(mappedBy = "post")
 //  private List<File> files;

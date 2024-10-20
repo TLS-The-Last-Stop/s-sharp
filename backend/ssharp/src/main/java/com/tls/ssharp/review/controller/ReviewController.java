@@ -5,11 +5,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tls.ssharp.post.entity.Post;
 import com.tls.ssharp.post.repository.PostRepository;
 import com.tls.ssharp.review.dto.request.ReviewDTO;
+import com.tls.ssharp.review.dto.response.ReviewResponseDTO;
+import com.tls.ssharp.review.dto.response.UserDTO;
 import com.tls.ssharp.review.entity.Review;
 import com.tls.ssharp.review.repository.ReviewRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import com.tls.ssharp.user.entity.User;
+import com.tls.ssharp.user.entity.UserPrincipal;
+import com.tls.ssharp.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,40 +26,34 @@ import org.springframework.web.bind.annotation.*;
 public class ReviewController {
     private final ReviewRepository reviewRepository;
     private final PostRepository postRepository; // Post 엔티티를 조회하기 위한 리포지토리
+    private final UserRepository userRepository;
 
     @PostMapping("write")
-    public List<Review>  writeReview(@RequestBody ReviewDTO reviewDTO) {
-        System.out.println(reviewDTO.getContent() + reviewDTO.getRating());
-        // String substringContent = reviewDTO.getContent().substring(1, reviewDTO.getContent().length() - 1);
-        System.out.println("@@reviewDTO.fetPOstID:  " +reviewDTO.getPostId());
+    public List<ReviewResponseDTO> writeReview(@RequestBody ReviewDTO reviewDTO, Authentication authentication) {
         Optional<Post> post = postRepository.findById(reviewDTO.getPostId());
+        Long userId = ((UserPrincipal) authentication.getPrincipal()).getId();
+
         Review review = new Review();
+        review.setUser(userRepository.getReferenceById(userId));
         review.setContent(reviewDTO.getContent());
         review.setRating(reviewDTO.getRating());
         review.setPost(post.get());
         reviewRepository.save(review);
-        List<Review> list = reviewRepository.findAllByPostId(reviewDTO.getPostId());
-        if (list == null) {
-            System.out.println("라이트에서 널");
-        }
-        for (Review review2 : list) {
-            System.out.println("@foreach1: " + review2.getContent());
-        }
-        return list;
-    }
-    @GetMapping("getList")
-    @ResponseBody
-    public List<Review> getReviewList(Long postId) {
-        System.out.println("@getReviewList 찍음");
-        System.out.println("@List PostId:  " +postId);
-        List<Review> list = reviewRepository.findAllByPostId(postId);
-        if (list == null) {
-            System.out.println("리스트에서 널");
-        }
 
-        System.out.println("@List PostId:  " +postId);
-        return list;
+        List<Review> reviews = reviewRepository.findAllByPostId(reviewDTO.getPostId());
+        return reviews.stream()
+                .map(r -> new ReviewResponseDTO(r.getId(), r.getContent(), r.getRating(), new UserDTO(r.getUser().getId(), r.getUser().getUsername())))
+                .collect(Collectors.toList());
     }
+
+    @GetMapping("getList")
+    public List<ReviewResponseDTO> getReviewList(Long postId) {
+        List<Review> reviews = reviewRepository.findAllByPostId(postId);
+        return reviews.stream()
+                .map(r -> new ReviewResponseDTO(r.getId(), r.getContent(), r.getRating(), new UserDTO(r.getUser().getId(), r.getUser().getUsername())))
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("getAvg")
     public int getRateAvg(){
         double sumOfRating = reviewRepository.getSumOfRating();

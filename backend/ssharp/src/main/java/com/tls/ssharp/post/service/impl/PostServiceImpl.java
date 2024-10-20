@@ -7,9 +7,11 @@ import com.tls.ssharp.post.entity.Tag;
 import com.tls.ssharp.post.repository.PostRepository;
 import com.tls.ssharp.post.repository.TagRepository;
 import com.tls.ssharp.post.service.PostService;
+import com.tls.ssharp.review.repository.ReviewRepository;
 import com.tls.ssharp.user.entity.UserPrincipal;
 import com.tls.ssharp.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,7 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
+    private final ReviewRepository reviewRepository;
 
     @Transactional
     public void savePost(PostRequest postRequest, Authentication authentication) {
@@ -57,6 +60,7 @@ public class PostServiceImpl implements PostService {
             postResponse.setTitle(post.getTitle());
             postResponse.setContent(post.getContent());
             postResponse.setCreatedAt(post.getCreatedAt());
+            postResponse.setUsername(post.getUser().getUsername());
 
             List<String> tagNames = new ArrayList<>();
             for (Tag tag : post.getTags()) {
@@ -106,7 +110,15 @@ public class PostServiceImpl implements PostService {
         postRepository.save(post);
     }
 
-    public void deletePostById(long id) {
+    @Transactional
+    public void deletePostById(long id, Authentication authentication) {
+        Long loggedInUserId = ((UserPrincipal) authentication.getPrincipal()).getId();
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("해당 게시물을 찾을 수 없습니다."));
+        Long postOwnerId = post.getUser().getId();
+        if (!postOwnerId.equals(loggedInUserId)) {
+            throw new AccessDeniedException("작성자만 글을 삭제할 수 있습니다.");
+        }
         postRepository.deleteById(id);
     }
 

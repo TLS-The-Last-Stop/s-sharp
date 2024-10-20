@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const PostGrid = ({}) => {
+const PostGrid = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [allTags, setAllTags] = useState([]);
@@ -36,7 +36,7 @@ const PostGrid = ({}) => {
     } else {
       setSelectedTag(tag);
       const filtered = posts.filter(
-        (post) => post.tags && post.tags.includes(tag)
+          (post) => post.tags && post.tags.includes(tag)
       );
       setFilteredPosts(filtered);
     }
@@ -47,55 +47,55 @@ const PostGrid = ({}) => {
   }
 
   return (
-    <>
-      <div className='all-tags'>
-        {allTags.map((tag, index) => (
-          <span
-            key={index}
-            className={`tag ${selectedTag === tag ? 'selected' : ''}`}
-            onClick={() => handleTagClick(tag)}
-            style={{ cursor: 'pointer' }}
-          >
+      <>
+        <div className='all-tags'>
+          {allTags.map((tag, index) => (
+              <span
+                  key={index}
+                  className={`tag ${selectedTag === tag ? 'selected' : ''}`}
+                  onClick={() => handleTagClick(tag)}
+                  style={{ cursor: 'pointer' }}
+              >
             #{tag}
           </span>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      {filteredPosts && filteredPosts.length > 0 ? (
-        filteredPosts.map((data) => (
-          <div className='col-lg-4 col-md-6 col-sm-12 mb-4' key={data.id}>
-            <div className='blog-item mb-30'>
-              <div className='post-thumb'></div>
-              <div className='blog-content'>
-                <div className='post-meta'>
+        {filteredPosts && filteredPosts.length > 0 ? (
+            filteredPosts.map((data) => (
+                <div className='col-lg-4 col-md-6 col-sm-12 mb-4' key={data.id}>
+                  <div className='blog-item mb-30'>
+                    <div className='post-thumb'></div>
+                    <div className='blog-content'>
+                      <div className='post-meta'>
                   <span className='post-date'>
                     <i className='fa fa-calendar-alt mr-2'></i>
                     작성일 |{' '}
                     {new Date(Date.parse(data.createdAt)).toLocaleDateString(
-                      'ko-KR'
+                        'ko-KR'
                     )}
                   </span>
-                </div>
-                <div className='post-tags'>
-                  {data.tags &&
-                    data.tags.map((tag, index) => (
-                      <span key={index} className='tag'>
+                      </div>
+                      <div className='post-tags'>
+                        {data.tags &&
+                            data.tags.map((tag, index) => (
+                                <span key={index} className='tag'>
                         #{tag}
                       </span>
-                    ))}
+                            ))}
+                      </div>
+                      <h3 className='post-title'>
+                        <Link to={`/course-details/${data.id}`}>{data.title}</Link>
+                      </h3>
+                      <span className='post-author'>작성자: {data.username}</span> {/* 작성자 이름 표시 */}
+                    </div>
+                  </div>
                 </div>
-                <h3 className='post-title'>
-                  <Link to={`/course-details/${data.id}`}>{data.title}</Link>
-                </h3>
-                <span className='post-author'> 작성자이름 </span>
-              </div>
-            </div>
-          </div>
-        ))
-      ) : (
-        <div>표시할 포스트가 없습니다.</div>
-      )}
-    </>
+            ))
+        ) : (
+            <div>표시할 포스트가 없습니다.</div>
+        )}
+      </>
   );
 };
 

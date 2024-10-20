@@ -7,6 +7,7 @@ import com.tls.ssharp.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
   private final PostService postService;
+
 
   @PostMapping("/api/post/register")
   public ResponseEntity<Void> savePost(@RequestBody PostRequest postRequest, Authentication authentication) {
@@ -40,9 +42,10 @@ public class PostController {
     return ResponseEntity.ok().build();
   }
 
+  @Transactional
   @DeleteMapping("/api/post/{id}")
-  public ResponseEntity<Void> deletePost(@PathVariable Long id) {
-    postService.deletePostById(id);
+  public ResponseEntity<Void> deletePost(@PathVariable Long id, Authentication authentication) {
+    postService.deletePostById(id, authentication);
     return ResponseEntity.ok().build();
   }
 }
