@@ -36,8 +36,9 @@ export const reportService = {
     }
   },
   createReport      : async (postId, reportData) => {
+    const auth = axiosWithAuth();
     try {
-      const response = await axios.post(`${BASE_URL}/posts/${postId}/report`, reportData);
+      const response = await auth.post(`${BASE_URL}/posts/${postId}/report`, reportData);
       return response.data;
     } catch (error) {
       console.error(`Error fetching reports for post ${postId}: `, error);

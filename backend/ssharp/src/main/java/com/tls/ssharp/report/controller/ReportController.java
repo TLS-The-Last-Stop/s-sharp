@@ -27,17 +27,20 @@ public class ReportController {
   private final ReportService reportService;
 
   @PostMapping("/posts/{postId}/report")
-  public CommonApiResponse createReport(final @RequestBody ReportApiRequest dto) {
-    reportService.saveReport(dto);
+  public CommonApiResponse createReport(final @RequestBody ReportApiRequest dto, Authentication auth) {
+    if (auth == null) return CommonApiResponse.createBadRequest("로그인을 먼저 해주세요.");
+    reportService.saveReport(dto, auth);
     return CommonApiResponse.createNoContent("성공!!");
   }
 
   @GetMapping("/post/{postId}/report")
-  public CommonApiResponse<?> checkReport(@PathVariable final String postId, Authentication auth) {
-    UserPrincipal user = (UserPrincipal) auth.getPrincipal();
-    System.out.println("user id => " + user.getId());
+  public CommonApiResponse<?> checkReport(@PathVariable final Long postId, Authentication auth) {
+    if (auth == null) return CommonApiResponse.createBadRequest("로그인을 먼저 해주세요.");
 
-    return null;
+    UserPrincipal user = (UserPrincipal) auth.getPrincipal();
+    boolean reportResult = reportService.isReportedBy(postId, user.getId());
+
+    return CommonApiResponse.createNoContent(reportResult + "");
   }
 
   @GetMapping("/reports")
@@ -62,15 +65,13 @@ public class ReportController {
 
   @GetMapping("/post/{postId}/reports")
   public ResponseEntity<List<ReportApiResponse>> getAllReports(@PathVariable(value = "postId", required = false) Long postId,
-                                                               @RequestParam(value = "page", required = false, defaultValue = "0") String page,
-                                                               @RequestParam(value = "size", required = false, defaultValue = "50") String size) {
+                                                               @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                                               @RequestParam(value = "size", required = false, defaultValue = "50") int size) {
 
-    int pageNumber = Integer.parseInt(page);
-    int pageSize = Integer.parseInt(size);
 
-    if (pageNumber > 0) pageNumber--;
+    if (page > 0) page--;
 
-    PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by("id").descending());
+    PageRequest pageRequest = PageRequest.of(page, size, Sort.by("id").descending());
     List<ReportApiResponse> list = reportService.findReportByPostId(postId, pageRequest);
 
     return ResponseEntity.status(HttpStatus.OK).body(list);

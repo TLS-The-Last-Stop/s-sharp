@@ -19,7 +19,6 @@ const PostGrid = ({}) => {
         setIsLoading(false);
       }
     };
-
     fetchPosts();
   }, []);
 
@@ -38,14 +37,24 @@ const PostGrid = ({}) => {
                 <div className='post-meta'>
                   <span className='post-date'>
                     <i className='fa fa-calendar-alt mr-2'></i>
-                    작성일 | {data.date}
+                    작성일 |{' '}
+                    {new Date(Date.parse(data.createdAt)).toLocaleDateString(
+                      'ko-KR'
+                    )}
                   </span>
+                </div>
+                <div className='post-tags'>
+                  {data.tags &&
+                    data.tags.map((tag, index) => (
+                      <span key={index} className='tag'>
+                        #{tag}
+                      </span>
+                    ))}
                 </div>
                 <h3 className='post-title'>
                   <Link to={`/course-details/${data.id}`}>{data.title}</Link>
                 </h3>
-                <p>{data.tags}</p>
-                <span className='post-author'> {data.userId} </span>
+                <span className='post-author'> {data.id} </span>
               </div>
             </div>
           </div>

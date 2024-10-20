@@ -23,7 +23,6 @@ public class PostController {
   @GetMapping("/api/posts")
   public ResponseEntity<List<PostResponse>> getAllPost(){
     List<PostResponse> res = postService.getAllPost();
-    System.out.println("@@@@@@@@@@@@@@@@@");
     return ResponseEntity.ok().body(res);
   }
 
@@ -31,6 +30,12 @@ public class PostController {
   public ResponseEntity<PostResponse> getPostById(@PathVariable Long id) {
     PostResponse res = postService.getPostById(id);
     return ResponseEntity.ok().body(res);
+  }
+
+  @PutMapping("/api/post/{id}")
+  public ResponseEntity<Void> updatePost(@PathVariable Long id, @RequestBody PostRequest postRequest) {
+    //postService.updatePost(id, postRequest);
+    return ResponseEntity.ok().build();
   }
 
   @DeleteMapping("/api/post/{id}")
