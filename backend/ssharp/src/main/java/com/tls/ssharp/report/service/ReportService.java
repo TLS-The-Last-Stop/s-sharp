@@ -12,6 +12,7 @@ import com.tls.ssharp.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,10 +30,11 @@ public class ReportService {
   private final PostRepository postRepository;
   private final UserRepository userRepository;
 
-  public void saveReport(final ReportApiRequest dto) {
-    UserPrincipal principal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+  public void saveReport(final ReportApiRequest dto, Authentication auth) {
 
     Post post = postRepository.findById(dto.getPostId()).orElseThrow();
+
+    UserPrincipal principal = (UserPrincipal) auth.getPrincipal();
     User user = userRepository.findByEmail(principal.getEmail()).orElseThrow();
 
     Report report = ReportApiRequest.toEntity(dto, user, post);

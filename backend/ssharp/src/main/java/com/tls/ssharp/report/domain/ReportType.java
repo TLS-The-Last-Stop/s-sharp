@@ -18,7 +18,6 @@ public enum ReportType {
 
   @JsonCreator
   public static ReportType fromDescription(@JsonProperty("reportType") String description) {
-    System.out.println("=> " + description);
     for (ReportType type : ReportType.values()) {
       if (type.getDescription().equals(description)) return type;
     }

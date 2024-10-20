@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
-import { PageBanner, PostGrid } from '../layouts/blog/index';
+import React, {useState} from 'react';
+import {PageBanner, PostGrid} from '../layouts/blog/index';
 
 import Layout from '../../common/Layout';
+import Chatbot from "../../admin/components/Chatbot";
 
 const BlogPageOne = () => {
   return (
-    <div className='about'>
-      <Layout>
-        <PageBanner
-          title='Blog Grid'
-          rootUrl='/'
-          parentUrl='Home'
-          currentUrl='Blog Grid'
-        />
+      <div className='about'>
+        <Chatbot/>
+        <Layout>
+          <PageBanner
+              title='Blog Grid'
+              rootUrl='/'
+              parentUrl='Home'
+              currentUrl='Blog Grid'
+          />
 
-        <div className='page-wrapper'>
-          <div className='container'>
-            <div className='row'>
-              <PostGrid />
+          <div className='page-wrapper'>
+            <div className='container'>
+              <div className='row'>
+                <PostGrid/>
+              </div>
             </div>
           </div>
-        </div>
-      </Layout>
-    </div>
+        </Layout>
+      </div>
   );
 };
 

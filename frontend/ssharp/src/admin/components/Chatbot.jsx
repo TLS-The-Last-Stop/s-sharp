@@ -41,16 +41,19 @@ const PopupHeader = styled.div`
 const PopupContent = styled.div`
     flex: 1;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 `;
 
 const CloseButton = styled.button`
     background: black;
     border: none;
-    font-size: 18px;
+    font-size: 18px; 
     cursor: pointer;
 `;
 
 const DetailView = styled.div`
+    overflow-y: auto;
     padding: 20px;
 `;
 
