@@ -5,6 +5,7 @@ import com.tls.ssharp.post.dto.response.PostResponse;
 import com.tls.ssharp.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class PostController {
   private final PostService postService;
 
   @PostMapping("/api/post/register")
-  public ResponseEntity<Void> savePost(@RequestBody PostRequest postRequest) {
-    postService.savePost(postRequest);
+  public ResponseEntity<Void> savePost(@RequestBody PostRequest postRequest, Authentication authentication) {
+    postService.savePost(postRequest, authentication);
     return ResponseEntity.ok().build();
   }
 

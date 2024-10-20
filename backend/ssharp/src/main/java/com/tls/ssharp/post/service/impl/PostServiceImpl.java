@@ -7,8 +7,12 @@ import com.tls.ssharp.post.entity.Tag;
 import com.tls.ssharp.post.repository.PostRepository;
 import com.tls.ssharp.post.repository.TagRepository;
 import com.tls.ssharp.post.service.PostService;
+import com.tls.ssharp.user.entity.User;
+import com.tls.ssharp.user.entity.UserPrincipal;
+import com.tls.ssharp.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.nodes.Element;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +27,15 @@ import org.jsoup.nodes.Document;
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public void savePost(PostRequest postRequest) {
+    public void savePost(PostRequest postRequest, Authentication authentication) {
         Post post = new Post();
         post.setTitle(postRequest.getTitle());
         post.setContent(postRequest.getContent());
+        Long userId = ((UserPrincipal) authentication.getPrincipal()).getId();
+        post.setUser(userRepository.getReferenceById(userId));
 
         List<Tag> tagList = new ArrayList<>();
         for (String tagName : postRequest.getTags()) {
@@ -75,6 +82,7 @@ public class PostServiceImpl implements PostService {
             postResponse.setTitle(post.getTitle());
             postResponse.setContent(getHtmlContent(post.getContent()));
             postResponse.setCreatedAt(post.getCreatedAt());
+            postResponse.setUsername(post.getUser().getUsername());
 
             List<String> tagNames = new ArrayList<>();
             for (Tag tag : post.getTags()) {
