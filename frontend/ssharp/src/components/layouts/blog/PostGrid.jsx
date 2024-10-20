@@ -69,14 +69,18 @@ const PostGrid = () => {
           ))}
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'flex-start',
+          gap: '20px',
+        }}>
           {filteredPosts && filteredPosts.length > 0 ? (
               filteredPosts.map((data) => (
                   <div
                       key={data.id}
                       style={{
-                        width: 'calc(33.33% - 20px)',
-                        marginBottom: '20px',
+                        width: '300px',
                         border: '1px solid #e0e0e0',
                         borderRadius: '8px',
                         overflow: 'hidden',

@@ -86,8 +86,8 @@ const FooterTwo = () => {
             </div>
           </div>
 
-          <div className='fixed-btm-top' onClick={moveToTop}>
-            <Link to='#top-header' className='js-scroll-trigger scroll-to-top'>
+          <div  className='fixed-btm-top' onClick={moveToTop}>
+            <Link style={{margin: '0px 7px 30px 0px'}} to='#top-header' className='js-scroll-trigger scroll-to-top'>
               <i className='fa fa-angle-up'></i>
             </Link>
           </div>

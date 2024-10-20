@@ -16,7 +16,7 @@ const BlogPageOne = () => {
               currentUrl='Blog Grid'
           />
 
-          <div className='page-wrapper'>
+          <div style={{ margin: '-45px -85px 0px 0px'}} className='page-wrapper'>
             <div className='container'>
               <div className='row'>
                 <PostGrid/>
