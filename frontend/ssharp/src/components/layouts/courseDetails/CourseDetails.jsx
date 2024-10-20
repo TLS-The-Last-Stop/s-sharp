@@ -9,6 +9,7 @@ import { slugify } from '../../../utils/index';
 import CourseInfo from './CourseInfo';
 import { FaStar } from 'react-icons/fa';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 const CustomToggle = ({ children, eventKey }) => {
   const { activeEventKey } = useContext(AccordionContext);
@@ -172,6 +173,12 @@ const CourseDetails = () => {
     setContentTab(content);
   };
 
+  const createMarkup = (html) => {
+    return {
+      __html: DOMPurify.sanitize(html),
+    };
+  };
+
   return (
     <>
       <section className='page-wrapper'>
@@ -231,7 +238,10 @@ const CourseDetails = () => {
                       ))}
                   </div>
                   <h1 className='course-title'>{post.title}</h1>
-                  <p className='course-content'>{post.content}</p>
+                  <div
+                    className='course-content'
+                    dangerouslySetInnerHTML={createMarkup(post.content)}
+                  />
                 </div>
 
                 <nav className='course-single-tabs learn-press-nav-tabs'>

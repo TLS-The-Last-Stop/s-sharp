@@ -7,11 +7,9 @@ import com.tls.ssharp.post.entity.Tag;
 import com.tls.ssharp.post.repository.PostRepository;
 import com.tls.ssharp.post.repository.TagRepository;
 import com.tls.ssharp.post.service.PostService;
-import com.tls.ssharp.user.entity.User;
 import com.tls.ssharp.user.entity.UserPrincipal;
 import com.tls.ssharp.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.jsoup.nodes.Element;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 @Service
 @RequiredArgsConstructor
@@ -115,7 +111,6 @@ public class PostServiceImpl implements PostService {
     }
 
     public String getHtmlContent(String htmlContent) {
-        Document document = Jsoup.parse(htmlContent);
-        return document.body().text();
+        return htmlContent;
     }
 }
