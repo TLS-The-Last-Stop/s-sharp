@@ -206,19 +206,29 @@ const CourseDetails = () => {
                           작성일 | {post.cratedAt}
                         </div>
 
-                        <div className='rating review-stars-rated'>
-                          &nbsp; 평점:&nbsp;
-                          {[...ARRAY].map((_, i) => (
-                              <a href='#' key={i}>
-                                <i className={`fa fa-star${i < avg ? '' : '-o'}`}></i>                          </a>
-                          ))}
-                        </div>
+                      <div className='rating review-stars-rated'>
+                        &nbsp; 평점:&nbsp;
+                        {[...ARRAY].map((_, i) => (
+                          <a href='#' key={i}>
+                            <i
+                              className={`fa fa-star${i < avg ? '' : '-o'}`}
+                            ></i>{' '}
+                          </a>
+                        ))}
                       </div>
                     </div>
-                    <div className='post-tags'>태그 예정</div>
-                    <h1 className='course-title'>{post.title}</h1>
-                    <p className='course-content'>{post.content}</p>
                   </div>
+                  <div className='post-tags'>
+                    {post.tags &&
+                      post.tags.map((tag, index) => (
+                        <span key={index} className='tag'>
+                          #{tag}
+                        </span>
+                      ))}
+                  </div>
+                  <h1 className='course-title'>{post.title}</h1>
+                  <p className='course-content'>{post.content}</p>
+                </div>
 
                   <nav className='course-single-tabs learn-press-nav-tabs'>
                     <ul className='nav nav-tabs course-nav' role='tablist'>
@@ -313,5 +323,6 @@ const CourseDetails = () => {
       </>
   );
 };
+//
 
 export default CourseDetails;
