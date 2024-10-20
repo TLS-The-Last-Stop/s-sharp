@@ -72,7 +72,6 @@ public class PostServiceImpl implements PostService {
         return postResponses;
     }
 
-
     public PostResponse getPostById(long id) {
         Optional<Post> postOptional = postRepository.findById(id);
         PostResponse postResponse = new PostResponse();
@@ -93,6 +92,24 @@ public class PostServiceImpl implements PostService {
         return postResponse;
     }
 
+    public void updatePostById(long id, PostRequest postRequest, Authentication authentication) {
+        Post post = postRepository.findById(id).orElse(null);
+        post.setTitle(postRequest.getTitle());
+        post.setContent(postRequest.getContent());
+        List<Tag> tagList = new ArrayList<>();
+        for (String tagName : postRequest.getTags()) {
+            Tag tag = tagRepository.findByName(tagName).orElse(null);
+            if (tag == null) {
+                Tag newTag = new Tag();
+                newTag.setName(tagName);
+                tag = tagRepository.save(newTag);
+            }
+            tagList.add(tag);
+        }
+        post.setTags(tagList);
+        postRepository.save(post);
+    }
+
     public void deletePostById(long id) {
         postRepository.deleteById(id);
     }
@@ -100,45 +117,5 @@ public class PostServiceImpl implements PostService {
     public String getHtmlContent(String htmlContent) {
         Document document = Jsoup.parse(htmlContent);
         return document.body().text();
-    }
-
-    public String getStyledText(String htmlContent) {
-        Document document = Jsoup.parse(htmlContent);
-        StringBuilder styledText = new StringBuilder();
-
-        for (Element element : document.body().children()) {
-            String tagName = element.tagName();
-            String text = element.ownText();
-
-            switch (tagName) {
-                case "h1":
-                case "h2":
-                case "h3":
-                case "h4":
-                case "h5":
-                case "h6":
-                case "p":
-                case "strong":
-                case "em":
-                case "span":
-                    if (!text.isEmpty()) {
-                        styledText.append("<").append(tagName).append(" class='styled-text' data-text='")
-                                .append(text).append("'></").append(tagName).append(">");
-                    }
-                    break;
-                default:
-                    if (!text.isEmpty()) {
-                        styledText.append(text);
-                    }
-                    break;
-            }
-        }
-
-        styledText.insert(0, "<style>\n" +
-                ".styled-text { visibility: hidden; }\n" +
-                ".styled-text::after { content: attr(data-text); visibility: visible; }\n" +
-                "</style>");
-
-        return styledText.toString();
     }
 }

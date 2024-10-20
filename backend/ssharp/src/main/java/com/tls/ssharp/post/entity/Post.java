@@ -7,8 +7,8 @@ import com.tls.ssharp.user.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -31,12 +31,6 @@ public class Post extends BaseEntity {
   @Column(columnDefinition = "TEXT", nullable = false)
   private String content;
 
-  @Column(name = "is_published")
-  private Boolean isPublished;
-
-  @Column(name = "published_at")
-  private LocalDateTime publishedAt;
-
   @Column(name = "is_deleted")
   private Boolean isDeleted;
 
@@ -48,8 +42,8 @@ public class Post extends BaseEntity {
   )
   private List<Tag> tags;
 
-//  @OneToMany(mappedBy = "post")
-//  private List<Review> reviews;
+  @OneToMany(mappedBy = "post")
+  private List<Review> reviews;
 
 //  @OneToMany(mappedBy = "post")
 //  private List<Bookmark> bookmarks;

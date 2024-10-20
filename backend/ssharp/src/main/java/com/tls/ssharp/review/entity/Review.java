@@ -1,6 +1,7 @@
 package com.tls.ssharp.review.entity;
 
 import com.tls.ssharp.auth.common.entity.BaseEntity;
+import com.tls.ssharp.post.entity.Post;
 import com.tls.ssharp.user.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,9 +17,9 @@ public class Review extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-//  @ManyToOne
-//  @JoinColumn(name = "post_id")
-//  private Post post;
+  @ManyToOne
+  @JoinColumn(name = "post_id")
+  private Post post;
 
   @ManyToOne
   @JoinColumn(name = "user_id")

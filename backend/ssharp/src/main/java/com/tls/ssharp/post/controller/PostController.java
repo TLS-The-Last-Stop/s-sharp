@@ -2,6 +2,7 @@ package com.tls.ssharp.post.controller;
 
 import com.tls.ssharp.post.dto.request.PostRequest;
 import com.tls.ssharp.post.dto.response.PostResponse;
+import com.tls.ssharp.post.entity.Tag;
 import com.tls.ssharp.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +34,9 @@ public class PostController {
     return ResponseEntity.ok().body(res);
   }
 
-  @PutMapping("/api/post/{id}")
-  public ResponseEntity<Void> updatePost(@PathVariable Long id, @RequestBody PostRequest postRequest) {
-    //postService.updatePost(id, postRequest);
+  @PutMapping("/api/post/update/{id}")
+  public ResponseEntity<Void> updatePost(@PathVariable Long id, @RequestBody PostRequest postRequest, Authentication authentication) {
+    postService.updatePostById(id, postRequest, authentication);
     return ResponseEntity.ok().build();
   }
 
