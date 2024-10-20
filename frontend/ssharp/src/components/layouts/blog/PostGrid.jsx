@@ -48,53 +48,82 @@ const PostGrid = () => {
 
   return (
       <>
-        <div className='all-tags'>
+        <div style={{ margin: '20px 0', display: 'flex', flexWrap: 'wrap' }}>
           {allTags.map((tag, index) => (
               <span
                   key={index}
                   className={`tag ${selectedTag === tag ? 'selected' : ''}`}
                   onClick={() => handleTagClick(tag)}
-                  style={{ cursor: 'pointer' }}
+                  style={{
+                    background: selectedTag === tag ? '#007bff' : '#f0f0f0',
+                    color: selectedTag === tag ? '#fff' : '#000',
+                    borderRadius: '20px',
+                    padding: '5px 10px',
+                    margin: '5px',
+                    cursor: 'pointer',
+                    transition: 'background 0.3s',
+                  }}
               >
             #{tag}
           </span>
           ))}
         </div>
 
-        {filteredPosts && filteredPosts.length > 0 ? (
-            filteredPosts.map((data) => (
-                <div className='col-lg-4 col-md-6 col-sm-12 mb-4' key={data.id}>
-                  <div className='blog-item mb-30'>
-                    <div className='post-thumb'></div>
-                    <div className='blog-content'>
-                      <div className='post-meta'>
-                  <span className='post-date'>
-                    <i className='fa fa-calendar-alt mr-2'></i>
-                    작성일 |{' '}
-                    {new Date(Date.parse(data.createdAt)).toLocaleDateString(
-                        'ko-KR'
-                    )}
-                  </span>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+          {filteredPosts && filteredPosts.length > 0 ? (
+              filteredPosts.map((data) => (
+                  <div
+                      key={data.id}
+                      style={{
+                        width: 'calc(33.33% - 20px)',
+                        marginBottom: '20px',
+                        border: '1px solid #e0e0e0',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+                        backgroundColor: '#fff',
+                      }}
+                  >
+                    <div style={{ padding: '15px' }}>
+                      <div style={{ marginBottom: '10px', fontSize: '14px', color: '#888' }}>
+                        <i className='fa fa-calendar-alt' style={{ marginRight: '5px' }}></i>
+                        {new Date(Date.parse(data.createdAt)).toLocaleDateString('ko-KR')}
                       </div>
-                      <div className='post-tags'>
+                      <h3 style={{ margin: '0 0 10px', fontSize: '18px' }}>
+                        <Link
+                            to={`/course-details/${data.id}`}
+                            style={{
+                              textDecoration: 'none',
+                              color: '#333',
+                              transition: 'color 0.3s',
+                            }}
+                        >
+                          {data.title}
+                        </Link>
+                      </h3>
+                      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         {data.tags &&
                             data.tags.map((tag, index) => (
-                                <span key={index} className='tag'>
+                                <span
+                                    key={index}
+                                    style={{
+                                      marginRight: '5px',
+                                      fontSize: '14px',
+                                      color: '#007bff',
+                                    }}
+                                >
                         #{tag}
                       </span>
                             ))}
                       </div>
-                      <h3 className='post-title'>
-                        <Link to={`/course-details/${data.id}`}>{data.title}</Link>
-                      </h3>
-                      <span className='post-author'>작성자: {data.username}</span> {/* 작성자 이름 표시 */}
+                      <span className='post-author' style={{ fontSize: '14px', color: '#555' }}>작성자: {data.username}</span>
                     </div>
                   </div>
-                </div>
-            ))
-        ) : (
-            <div>표시할 포스트가 없습니다.</div>
-        )}
+              ))
+          ) : (
+              <div>표시할 포스트가 없습니다.</div>
+          )}
+        </div>
       </>
   );
 };

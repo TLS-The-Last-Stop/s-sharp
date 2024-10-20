@@ -8,7 +8,7 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import '@yaireo/tagify/dist/tagify.css';
 import { useNavigate } from 'react-router-dom';
 import { axiosWithAuth } from '../../../utils/authUtils';
-import '@yaireo/tagify/dist/tagify.css';
+import '../../../app/css/WriteForm.css';
 
 const WriteForm = () => {
   const editorRef = useRef(null);
@@ -55,12 +55,12 @@ const WriteForm = () => {
     try {
       const axiosInstance = axiosWithAuth(); // 인증된 axios 인스턴스 가져오기
       const response = await axiosInstance.post(
-        'http://localhost:8080/api/post/register',
-        {
-          title: title,
-          content: content,
-          tags: tags,
-        }
+          'http://localhost:8080/api/post/register',
+          {
+            title: title,
+            content: content,
+            tags: tags,
+          }
       );
       console.log(response.data);
       navigate('/');
@@ -76,11 +76,11 @@ const WriteForm = () => {
     try {
       const axiosInstance = axiosWithAuth();
       const response = await axiosInstance.post(
-        'http://localhost:8080/api/upload',
-        formData,
-        {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        }
+          'http://localhost:8080/api/upload',
+          formData,
+          {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          }
       );
       callback(response.data, 'alt text');
     } catch (error) {
@@ -89,37 +89,37 @@ const WriteForm = () => {
   };
 
   return (
-    <div className='post'>
-      <input
-        className='post-title'
-        placeholder='제목을 입력하세요'
-        value={title}
-        onChange={onTitleChange}
-      />
-      <input
-        ref={inputRef}
-        className='post-tags'
-        placeholder='태그를 입력하세요!'
-      />
-      <Editor
-        ref={editorRef}
-        initialValue=' '
-        previewStyle='vertical'
-        width='300px'
-        height='540px'
-        initialEditType='wysiwyg'
-        hideModeSwitch={true}
-        useCommandShortcut={false}
-        plugins={[color]}
-        onChange={onContentChange}
-        hooks={{
-          addImageBlobHook: onUploadImage,
-        }}
-      />
-      <button className='write-btn' onClick={onSubmit}>
-        작성하기
-      </button>
-    </div>
+      <div className='post'>
+        <input
+            className='post-title'
+            placeholder='제목을 입력하세요'
+            value={title}
+            onChange={onTitleChange}
+        />
+        <input
+            ref={inputRef}
+            className='post-tags'
+            placeholder='태그를 입력하세요! (예: react, javascript)'
+        />
+        <Editor
+            ref={editorRef}
+            initialValue=' '
+            previewStyle='vertical'
+            width='100%'
+            height='540px'
+            initialEditType='wysiwyg'
+            hideModeSwitch={true}
+            useCommandShortcut={false}
+            plugins={[color]}
+            onChange={onContentChange}
+            hooks={{
+              addImageBlobHook: onUploadImage,
+            }}
+        />
+        <button className='write-btn' onClick={onSubmit}>
+          작성하기
+        </button>
+      </div>
   );
 };
 

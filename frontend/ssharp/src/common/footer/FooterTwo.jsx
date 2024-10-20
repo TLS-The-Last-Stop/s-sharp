@@ -19,7 +19,7 @@ const FooterTwo = () => {
                 <div className='col-xl-3 me-auto col-sm-8'>
                   <div className='footer-logo mb-3'>
                     <img
-                        src={`${import.meta.env.VITE_API_URL}/assets/images/logo.png`}
+                        src={`${import.meta.env.VITE_API_URL}/assets/images/footer.png`}
                         alt='Logo'
                         className='img-fluid'
                     />

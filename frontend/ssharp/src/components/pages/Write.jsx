@@ -3,13 +3,18 @@ import { WriteForm } from '../layouts/Write/index';
 import Layout from '../../common/Layout';
 
 const Write = () => {
-  return (
-    <div className=''>
-      <Layout>
-        <WriteForm />
-      </Layout>
-    </div>
-  );
+    return (
+        <Layout>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '90vh',
+            }}>
+                <WriteForm />
+            </div>
+        </Layout>
+    );
 };
 
 export default Write;
