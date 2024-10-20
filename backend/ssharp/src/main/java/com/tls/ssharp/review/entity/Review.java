@@ -1,5 +1,6 @@
 package com.tls.ssharp.review.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tls.ssharp.auth.common.entity.BaseEntity;
 import com.tls.ssharp.post.entity.Post;
 import com.tls.ssharp.user.entity.User;
@@ -18,6 +19,7 @@ public class Review extends BaseEntity {
   private Long id;
 
   @ManyToOne
+  @JsonIgnore
   @JoinColumn(name = "post_id")
   private Post post;
 
@@ -32,6 +34,3 @@ public class Review extends BaseEntity {
   @Column(name = "is_deleted")
   private Boolean isDeleted;
 }
-
-
-

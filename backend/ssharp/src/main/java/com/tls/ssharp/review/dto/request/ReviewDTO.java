@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class ReviewDTO {
     private String content;
     private int rating;
+    private Long postId;
 
 }

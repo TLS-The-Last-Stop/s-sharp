@@ -98,7 +98,7 @@ const CourseDetails = () => {
 
   // 리뷰 목록 가져오기
   useEffect(() => {
-    fetch('http://localhost:8080/review/getList', {
+    fetch(`http://localhost:8080/review/getList?postId=${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ const CourseDetails = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ content, rating }),
+      body: JSON.stringify({ content, rating, postId: id }),
     })
       .then((response) => response.json())
       .then(() => {
@@ -216,7 +216,7 @@ const CourseDetails = () => {
                           <a href='#' key={i}>
                             <i
                               className={`fa fa-star${i < avg ? '' : '-o'}`}
-                            ></i>{' '}
+                            ></i>
                           </a>
                         ))}
                       </div>
