@@ -200,6 +200,13 @@ const CourseDetails = () => {
                         작성자 이름 예정 &nbsp;&nbsp;&nbsp;&nbsp;
                       </div>
 
+                      <div className='d-flex justify-content-between align-items-center'>
+                        <span>
+                          <i className='ri-bar-chart-2-line me-2'></i>
+                        </span>
+                        작성일 | {post.cratedAt}
+                      </div>
+
                       <div className='rating review-stars-rated'>
                         평점:&nbsp;
                         {[...ARRAY].map((_, i) => (
@@ -210,8 +217,9 @@ const CourseDetails = () => {
                       </div>
                     </div>
                   </div>
-
+                  <div className='post-tags'>태그 예정</div>
                   <h1 className='course-title'>{post.title}</h1>
+                  <p className='course-content'>{post.content}</p>
                 </div>
 
                 <nav className='course-single-tabs learn-press-nav-tabs'>
@@ -304,10 +312,10 @@ const CourseDetails = () => {
                   )}
                 </div>
               </div>
-
+              {/* 
               <div className='col-lg-5 col-xl-4'>
                 <CourseInfo data={courseItem} />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

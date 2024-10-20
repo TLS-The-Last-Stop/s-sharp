@@ -8,12 +8,15 @@ import com.tls.ssharp.post.repository.PostRepository;
 import com.tls.ssharp.post.repository.TagRepository;
 import com.tls.ssharp.post.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 @Service
 @RequiredArgsConstructor
@@ -21,33 +24,47 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
 
+    @Transactional
     public void savePost(PostRequest postRequest) {
-        List<String> hashTags = postRequest.getTags();
-
         Post post = new Post();
         post.setTitle(postRequest.getTitle());
         post.setContent(postRequest.getContent());
 
-        postRepository.save(post);
-
-        for (String hashTag : hashTags) {
-            Tag tag = new Tag();
-            tag.setName(hashTag);
-            tagRepository.save(tag);
+        List<Tag> tagList = new ArrayList<>();
+        for (String tagName : postRequest.getTags()) {
+            Tag tag = tagRepository.findByName(tagName).orElse(null);
+            if (tag == null) {
+                Tag newTag = new Tag();
+                newTag.setName(tagName);
+                tag = tagRepository.save(newTag);
+            }
+            tagList.add(tag);
         }
+        post.setTags(tagList);
+        postRepository.save(post);
     }
 
     public List<PostResponse> getAllPost() {
-        return postRepository.findAll().stream()
-                .map(post -> {
-                    PostResponse postResponse = new PostResponse();
-                    postResponse.setId(post.getId());
-                    postResponse.setTitle(post.getTitle());
-                    postResponse.setContent(post.getContent());
-                    return postResponse;
-                })
-                .collect(Collectors.toList());
+        List<Post> posts = postRepository.findAllByOrderByIdDesc();
+        List<PostResponse> postResponses = new ArrayList<>();
+
+        for (Post post : posts) {
+            PostResponse postResponse = new PostResponse();
+            postResponse.setId(post.getId());
+            postResponse.setTitle(post.getTitle());
+            postResponse.setContent(post.getContent());
+            postResponse.setCreatedAt(post.getCreatedAt());
+
+            List<String> tagNames = new ArrayList<>();
+            for (Tag tag : post.getTags()) {
+                tagNames.add(tag.getName());
+            }
+            postResponse.setTags(tagNames);
+            postResponses.add(postResponse);
+        }
+        return postResponses;
     }
+
 
     public PostResponse getPostById(long id) {
         Optional<Post> post = postRepository.findById(id);
@@ -55,12 +72,52 @@ public class PostServiceImpl implements PostService {
         if (post.isPresent()) {
             postResponse.setId(id);
             postResponse.setTitle(post.get().getTitle());
-            postResponse.setContent(post.get().getContent());
+            postResponse.setContent(getStyledText(post.get().getContent()));
         }
         return postResponse;
     }
 
     public void deletePostById(long id) {
         postRepository.deleteById(id);
+    }
+
+    public String getStyledText(String htmlContent) {
+        Document document = Jsoup.parse(htmlContent);
+        StringBuilder styledText = new StringBuilder();
+
+        for (Element element : document.body().children()) {
+            String tagName = element.tagName();
+            String text = element.ownText();
+
+            switch (tagName) {
+                case "h1":
+                case "h2":
+                case "h3":
+                case "h4":
+                case "h5":
+                case "h6":
+                case "p":
+                case "strong":
+                case "em":
+                case "span":
+                    if (!text.isEmpty()) {
+                        styledText.append("<").append(tagName).append(" class='styled-text' data-text='")
+                                .append(text).append("'></").append(tagName).append(">");
+                    }
+                    break;
+                default:
+                    if (!text.isEmpty()) {
+                        styledText.append(text);
+                    }
+                    break;
+            }
+        }
+
+        styledText.insert(0, "<style>\n" +
+                ".styled-text { visibility: hidden; }\n" +
+                ".styled-text::after { content: attr(data-text); visibility: visible; }\n" +
+                "</style>");
+
+        return styledText.toString();
     }
 }

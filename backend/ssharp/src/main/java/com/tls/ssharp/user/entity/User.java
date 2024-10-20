@@ -1,10 +1,12 @@
 package com.tls.ssharp.user.entity;
 
 import com.tls.ssharp.auth.common.entity.BaseEntity;
+import com.tls.ssharp.post.entity.Post;
 import com.tls.ssharp.user.profileImage.entity.ProfileImage;
 import lombok.*;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -44,8 +46,8 @@ public class User extends BaseEntity {
   @Column(name = "is_deleted")
   private Boolean isDeleted;
 
-//  @OneToMany(mappedBy = "user")
-//  private List<Post> posts;
+  @OneToMany(mappedBy = "user")
+  private List<Post> posts;
 //
 //  @OneToMany(mappedBy = "user")
 //  private List<Review> reviews;

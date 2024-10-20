@@ -7,6 +7,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@yaireo/tagify/dist/tagify.css';
+import { useNavigate } from 'react-router-dom';
 
 const WriteForm = () => {
   const editorRef = useRef(null);
@@ -15,51 +16,57 @@ const WriteForm = () => {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Tagify 인스턴스 생성
-    tagifyRef.current = new Tagify(inputRef.current);
-
-    // 태그가 추가되면 이벤트 발생
-    tagifyRef.current.on('add', () => {
-      console.log(tagifyRef.current.value); // 입력된 태그 정보 객체
+    tagifyRef.current = new Tagify(inputRef.current, {
+      maxTags: 10,
+      backspace: 'edit',
+      dropdown: {
+        enabled: 0,
+      },
     });
 
-    // 컴포넌트가 언마운트될 때 Tagify 인스턴스 제거
+    tagifyRef.current.on('add', onTagChange);
+    tagifyRef.current.on('remove', onTagChange);
+
     return () => {
-      tagifyRef.current.destroy();
-      tagifyRef.current = null;
+      if (tagifyRef.current) {
+        tagifyRef.current.destroy();
+      }
     };
   }, []);
 
-  const onChangeTitle = (e) => {
+  const onTagChange = () => {
+    setTags(tagifyRef.current.value.map((tag) => tag.value));
+  };
+
+  const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const onChangeContent = () => {
+  const onContentChange = () => {
     const data = editorRef.current.getInstance().getHTML();
     setContent(data);
   };
 
-  const onChangeTag = (e) => {
-    setTags(e.target.value);
-  };
-
   const onSubmit = async () => {
-    await axios
-      .post('http://localhost:8080/post', {
-        title: title,
-        content: content,
-        tag: tags,
-      })
-      .then((response) => {
-        alert(aa);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        alert(error);
-        console.log(error);
-      });
+    try {
+      const response = await axios.post(
+        'http://localhost:8080/api/post/register',
+        {
+          title: title,
+          content: content,
+          tags: tags,
+        }
+      );
+      console.log(response.data);
+      alert('글 작성 성공적');
+      navigate('/');
+    } catch (error) {
+      console.error('Error submitting post:', error);
+      alert('글 작성 오류');
+    }
   };
 
   return (
@@ -68,24 +75,26 @@ const WriteForm = () => {
         className='post-title'
         placeholder='제목을 입력하세요'
         value={title}
-        onChange={onChangeTitle}
+        onChange={onTitleChange}
       />
       <input
         ref={inputRef}
         className='post-tags'
         placeholder='태그를 입력하세요!'
-        value={tags}
-        onChange={onChangeTag}
+        // value={tags}
+        // onChange={onChangeTag}
       />
       <Editor
         ref={editorRef}
         initialValue=' '
         previewStyle='vertical'
+        width='300px'
         height='540px'
         initialEditType='wysiwyg'
+        hideModeSwitch={true}
         useCommandShortcut={false}
         plugins={[color]}
-        onChange={onChangeContent}
+        onChange={onContentChange}
       />
       <button className='write-btn' onClick={onSubmit}>
         작성하기
