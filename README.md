@@ -3,7 +3,7 @@
 <div align="center">
   
 ![image](https://github.com/user-attachments/assets/38fbe2a0-5050-47a5-ae0e-3af4399d7213)
-  <h3><b>학생 학습 정리 플랫폼 S-S#arp</b></h3> 
+  <h3><b>👥 학생 학습 정리 플랫폼 S-S#arp 💯</b></h3> 
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FTLS-The-Last-Stop%2Fs-sharp&count_bg=%23FFC93A&title_bg=%23FFECB5&icon=&icon_color=%23E7E7E7&title=%F0%9F%91%80&edge_flat=false)](https://hits.seeyoufarm.com)
 
@@ -98,6 +98,25 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
   </ul>
 </details>
 
+<details>
+<summary>버전 및 이슈관리</summary>
+  <ul>
+    <li>Git</li>
+    <li>GitHub</li>
+  </ul>
+</details>
+
+<details>
+<summary>협업 툴</summary>
+  <ul>
+    <li>Discord</li>
+    <li>Notion</li>
+    <li>GitHub</li>
+    <li>Slack</li>
+    <li>VScode</li>
+  </ul>
+</details>
+
 ![image](https://github.com/user-attachments/assets/a57ffb90-33a6-462a-83be-4c64d6a612b3)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -106,7 +125,7 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 ## 📖 API 명세  <a name="api"></a>
 
-### <a href="https://sulfuric-alphabet-1bc.notion.site/API-11b72fa24262810eb944fba317dd3cab?pvs=4" target="_blank"> 🌐 </a>
+### <a href="https://sulfuric-alphabet-1bc.notion.site/API-11b72fa24262810eb944fba317dd3cab?pvs=4" target="_blank"> 🌐 API 🌐 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -196,11 +215,12 @@ ssharp/
 ## 🔑 주요 기능 <a name="key-features"></a>
 
 - **로그인 및 회원가입**: JWT 기반 인증 및 OAuth 소셜 로그인
-- **실시간 알림**: STOMP와 WebSocket을 활용한 실시간 알림 기능
+- **북마크 기능**: 플랫폼 운영을 위한 관리 도구
 - **학습 자료 공유**: URL을 통한 간편한 자료 공유
 - **검색 기능**: 태그 및 카테고리 기반 검색
 - **리뷰 및 평가**: 학습 자료에 대한 피드백 시스템
 - **콘텐츠 관리**: CRUD 기능 및 버전 관리
+- **신고 기능**: 회원 보호를 위한 시스템
 - **관리자 기능**: 플랫폼 운영을 위한 관리 도구
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
