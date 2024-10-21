@@ -52,7 +52,7 @@ public class ReportService {
   public Page<ReportApiResponse> findReportsBySearch(Pageable pageable, String searchType, String keyword) {
     Page<Report> reports = reportRepository.findReportsBySearchConditions(searchType, keyword, pageable);
 
-    return reports.map(report -> ReportApiResponse.fromEntity(report, report.getReportUser()));
+    return reports.map(report -> ReportApiResponse.fromEntity(report));
   }
 
   @Transactional(readOnly = true)
@@ -61,7 +61,7 @@ public class ReportService {
     List<Report> report = reportRepository.findByPostId(postId);
     List<ReportApiResponse> allRerportByPostId = new ArrayList<>();
     for (Report r : report) {
-      allRerportByPostId.add(ReportApiResponse.fromEntity(r, r.getPost().getUser()));
+      allRerportByPostId.add(ReportApiResponse.fromEntity(r));
     }
 
     return allRerportByPostId;
