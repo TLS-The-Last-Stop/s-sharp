@@ -106,7 +106,7 @@ const WriteForm = () => {
         initialValue=' '
         previewStyle='vertical'
         width='100%'
-        height='540px'
+        height='400px'
         initialEditType='wysiwyg'
         hideModeSwitch={true}
         useCommandShortcut={false}
