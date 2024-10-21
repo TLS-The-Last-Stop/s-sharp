@@ -5,6 +5,8 @@
 ![image](https://github.com/user-attachments/assets/38fbe2a0-5050-47a5-ae0e-3af4399d7213)
   <h3><b>학생 학습 정리 플랫폼 S-S#arp</b></h3> 
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FTLS-The-Last-Stop%2Fs-sharp&count_bg=%23FFC93A&title_bg=%23FFECB5&icon=&icon_color=%23E7E7E7&title=%F0%9F%91%80&edge_flat=false)](https://hits.seeyoufarm.com)
+
 </div>
 
 ## 🔗 Link
