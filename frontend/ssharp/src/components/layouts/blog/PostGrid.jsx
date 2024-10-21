@@ -55,7 +55,7 @@ const PostGrid = () => {
                   className={`tag ${selectedTag === tag ? 'selected' : ''}`}
                   onClick={() => handleTagClick(tag)}
                   style={{
-                    background: selectedTag === tag ? '#007bff' : '#f0f0f0',
+                    background: selectedTag === tag ? '#FFC93A' : '#f0f0f0',
                     color: selectedTag === tag ? '#fff' : '#000',
                     borderRadius: '20px',
                     padding: '5px 10px',
