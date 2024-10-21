@@ -62,7 +62,7 @@ const SearchBar = ({ onSearch }) => {
       <form action="" onSubmit={onSubmit}>
         <select name="condition" onChange={handleChange} value={search.condition}>
           <option value="all">전체</option>
-          <option value="nickname">닉네임</option>
+          <option value="username">닉네임</option>
           <option value="title">글제목</option>
         </select>
         <input type="text" name="keyword" onChange={handleChange} placeholder="검색어를 입력해주세요." autoComplete="false" />
