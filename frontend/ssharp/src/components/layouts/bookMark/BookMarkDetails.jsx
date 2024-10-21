@@ -59,7 +59,6 @@ const BookMarkDetails = () => {
                                     </div>
                                 </Accordion.Header>
                                 <Accordion.Body>
-                                    <p>{bookmark.post?.content || '내용 없음'}</p>
                                     <p>북마크 생성
                                         시간: {bookmark.createdAt ? new Date(bookmark.createdAt).toLocaleString() : '시간 정보 없음'}</p>
                                     <p>작성자: {bookmark.user?.username || '알 수 없음'}</p>
