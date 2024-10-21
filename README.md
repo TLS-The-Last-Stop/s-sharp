@@ -28,6 +28,7 @@
 
 - [🔭 향후 계획](#future-features)
 - [🙏 소감](#acknowledgements)
+- [📞 연락처](#call)
 
 <br>
 
@@ -109,7 +110,10 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 <br>
 
-## 📂 프로젝트 구조 <a name="project"></a>
+## 📁 프로젝트 구조 <a name="project"></a>
+<details>
+  <summary>📂</summary>
+  
 ```
 ssharp/
 ├── .idea
@@ -181,7 +185,7 @@ ssharp/
         ├── vite.config.mjs
         └── yarn.lock
 ```
-
+</details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <br>
@@ -275,4 +279,6 @@ mvn install
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## 📞 연락처 <a name="call"></a>
+
+프로젝트 관련 문의는 [TLS](https://github.com/TLS-The-Last-Stop)으로 문의주시길 바랍니다.
