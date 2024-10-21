@@ -4,7 +4,10 @@ import com.tls.ssharp.report.domain.Report;
 import com.tls.ssharp.report.domain.ReportStatus;
 import com.tls.ssharp.report.domain.ReportType;
 import com.tls.ssharp.user.entity.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +15,6 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class ReportApiResponse {
 
   private Long id;
@@ -30,8 +32,8 @@ public class ReportApiResponse {
             .id(report.getId())
             .postId(report.getPost().getId())
             .title(report.getPost().getTitle())
-            .postUserNickname(postUser.getNickname())
-            .reportUserNickname(report.getReportUser().getNickname())
+            .postUserNickname(postUser.getUsername())
+            .reportUserNickname(report.getReportUser().getUsername())
             .reason(report.getReason())
             .reportType(report.getReportType())
             .reportStatus(report.getReportStatus())
