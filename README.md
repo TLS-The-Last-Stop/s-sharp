@@ -5,15 +5,21 @@
 ![image](https://github.com/user-attachments/assets/38fbe2a0-5050-47a5-ae0e-3af4399d7213)
   <h3><b>학생 학습 정리 플랫폼 S-S#arp</b></h3> 
 
-
-
 </div>
+
+## 🔗 Link
+- <a href="https://www.canva.com/design/DAGS2T9F7xs/V0sPmxokNoIUpT2k5FpaYg/view?utm_content=DAGS2T9F7xs&utm_campaign=designshare&utm_medium=link&utm_source=editor#1" target="_blank">S-S#arp 최종발표/영상 및 자료 ⭕</a>
+- <a href="https://sulfuric-alphabet-1bc.notion.site/TLS-The-Last-Stop-11b72fa24262806caca5fc2e57cbb1a4?pvs=4" target="_blank">S-S#arp Notion 📝</a>
+
+<br>
 
 # 📗 목차
 
-- [📖 프로젝트 소개](#about-project)
+- [📢 프로젝트 소개](#about-project)
   - [👨‍👩‍👦‍👦 웹개발팀 소개](#authors)
   - [🛠 개발 환경](#built-with)
+  - [📖 API 명세](#api)
+  - [📂 프로젝트 구조](#project)
   - [🔑 주요 기능](#key-features)
   - [🚀 시연영상](#live-demo)
 - [💻 시작하기](#getting-started)
@@ -25,11 +31,28 @@
 
 <br>
 
-# 📖 학생 학습 정리 플랫폼 <a name="about-project"></a>
+## 📢 프로젝트 소개 <a name="about-project"></a>
 
-**학생 학습 정리 플랫폼**은 학생들이 학습 내용을 정리하고 공유할 수 있는 공간을 제공하는 웹 애플리케이션입니다. 이 플랫폼을 통해 학생들은 학습을 체계적으로 관리하고, 다른 학생들과 지식을 공유하며 피드백을 주고받을 수 있습니다.
+**S-S#arp**는 학생들이 학습 내용을 정리하고 공유할 수 있는 플랫폼입니다.  
+이 플랫폼은 사용자가 자신만의 학습 자료를 쉽게 등록하고, 다른 사용자와 소통할 수 있는 기능을 제공합니다.  
+주요 기능으로는 다음과 같은 것들이 포함되어 있습니다:  
+1. 학습 정리 습관 형성  
+2. 지식 공유 및 협업  
+3. 개별 학습 기록 저장  
+4. 안전한 커뮤니티 형성  
 
-<br>
+**S-S#arp**의 핵심 목표는 학생들이 서로의 학습 경험을 공유하고, 효율적으로 공부할 수 있는 안전한 커뮤니티를 형성하는 것입니다.
+
+**S-S#arp** is a platform for students to organize and share their learning experiences.  
+This platform allows users to easily register their own study materials and communicate with other users.  
+Key features include:  
+1. Formation of study organization habits  
+2. Knowledge sharing and collaboration  
+3. Individual learning record storage  
+4. Creation of a safe community  
+
+The core goal of **S-S#arp** is to create a safe community where students can share their learning experiences and study effectively together.
+
 
 ![main](https://github.com/user-attachments/assets/d5fffa62-a17e-407e-9b97-5aa3e21c0655)  
 
@@ -41,7 +64,7 @@
 | :----------------: | :----------------------: | :-----------------: | :----------------: | :----------------: |
 |   ![image](https://github.com/user-attachments/assets/e1d65a46-b877-4d09-80b0-7d7815923d99)   |   ![image](https://github.com/user-attachments/assets/cfd32868-abec-4ee4-9d79-841779c844e8)  | ![image](https://github.com/user-attachments/assets/dd09b103-1d03-431d-8e13-da7af174fced) | ![image](https://github.com/user-attachments/assets/a0b7ed59-bb5d-4595-b43c-cbdb499a0e31) |   ![image](https://github.com/user-attachments/assets/b99e243e-19ec-4c9b-9bda-450b075a606f)    |
 |   [@hyoekjin](https://github.com/HS-hyeokjin)   |    [@daeun](https://github.com/kde0707)  | [@YUL554](https://github.com/YUL554)  | [@koreajohn](https://github.com/koreajohn) | [@ssuwwann](https://github.com/ssuwwann) |
-| 천재교육 풀스택 6기 | 천재교육 풀스택 6기 | 천재교육 풀스택 6기 | 천재교육 풀스택 6기 | 천재교육 풀스택 6기 |
+| 천재교육 풀스택6기 | 천재교육 풀스택6기 | 천재교육 풀스택6기 | 천재교육 풀스택6기 | 천재교육 풀스택6기 |
 
 <br>
 
@@ -72,6 +95,98 @@
   </ul>
 </details>
 
+![image](https://github.com/user-attachments/assets/a57ffb90-33a6-462a-83be-4c64d6a612b3)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br>
+
+## 📖 API 명세  <a name="api"></a>
+
+### <a href="https://sulfuric-alphabet-1bc.notion.site/API-11b72fa24262810eb944fba317dd3cab?pvs=4" target="_blank"> 🌐 </a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br>
+
+## 📂 프로젝트 구조 <a name="project"></a>
+```
+ssharp/
+├── .idea
+├── backend/
+│   ├── .gradle
+│   ├── ssharp/
+│   │   ├── build/
+│   │   ├── gradle/
+│   │   ├── src/
+│   │   │   └── java/
+│   │   │       └── com/
+│   │   │           └── tls/
+│   │   │               └── ssharp/
+│   │   │                   ├── SsharpApplication.java
+│   │   │                   ├── auth/
+│   │   │                   ├── bookmark/
+│   │   │                   ├── config/
+│   │   │                   ├── faq/
+│   │   │                   ├── post/
+│   │   │                   ├── report/
+│   │   │                   ├── review/
+│   │   │                   ├── search/
+│   │   │                   ├── security/
+│   │   │                   ├── user/
+│   │   │                   └── util/
+│   │   ├── build.gradle
+│   │   ├── gradlew
+│   │   ├── gradlew.bat
+│   │   ├── HELP.md
+│   │   └── settings.gradle
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── tls/
+│                   └── ssharp/
+│                       └── SsharpApplicationTests.java
+└── frontend/
+    └── ssharp/
+        ├── node_modules/
+        ├── public/
+        ├── src/
+        │   ├── admin/
+        │   │   ├── api/
+        │   │   ├── components/
+        │   │   ├── data/
+        │   │   └── layout/
+        │   ├── app/
+        │   ├── common/
+        │   │   ├── footer/
+        │   │   └── header/
+        │   ├── components/
+        │   │   ├── auth/
+        │   │   ├── layouts/
+        │   │   └── pages/
+        │   │       ├── blog/
+        │   │       ├── bookmark/
+        │   │       └── share/
+        │   ├── data/
+        │   ├── utils/
+        │   ├── App.css
+        │   ├── App.jsx
+        │   ├── index.css
+        │   └── index.jsx
+        ├── .env
+        ├── index.html
+        ├── package.json
+        ├── package-lock.json
+        ├── README.md
+        ├── vite.config.mjs
+        └── yarn.lock
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br>
+
+
 ## 🔑 주요 기능 <a name="key-features"></a>
 
 - **로그인 및 회원가입**: JWT 기반 인증 및 OAuth 소셜 로그인
@@ -82,6 +197,10 @@
 - **콘텐츠 관리**: CRUD 기능 및 버전 관리
 - **관리자 기능**: 플랫폼 운영을 위한 관리 도구
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br>
+
 ## 🚀 시연영상 <a name="live-demo"></a>
 
 |  영상 |
@@ -91,6 +210,8 @@
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br>
 
 ## 💻 시작하기 <a name="getting-started"></a>
 
@@ -122,6 +243,8 @@ mvn install
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<br>
+
 ## 🔭 향후 계획 <a name="future-features"></a>
 
 - 모바일 앱 개발: iOS 및 Android 플랫폼 지원
@@ -130,9 +253,11 @@ mvn install
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<br>
+
 ## 🙏 소감 <a name="acknowledgements"></a>
 
-### 김다은( 팀장) - 알림, 공유, 북마크
+### 👶 김다은(팀장) - 알림, 공유, 북마크
 알림 북마크 기능 개발을 통해 사용자 경험을 한 단계 향상시킬 수 있어 보람찼습니다. 이 과정에서 프론트엔드와 백엔드 기술을 통합하는 실질적인 경험을 쌓았고, 특히 사용자 인터페이스 최적화에 대해 많이 배웠습니다. 
 
 ### 김혁진 - 로그인, 회원가입
@@ -146,5 +271,8 @@ mvn install
 
 ### 이수완 - 신고, 관리자, FAQ
 신고의 조회수 구현을 통해 레디스라는 새로운 기술을 사용해 보았으며 보이는 화면 또한 react를 통해 구현해 새로운 기술을 공부하는 시간이 되어서 좋았지만 습득하는 데 시간이 걸려 완성도 있게 프로젝트를 마무리하지 못하여 아쉬움이 남기도 하였습니다. 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
