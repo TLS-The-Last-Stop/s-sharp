@@ -27,12 +27,12 @@ public class ReportApiResponse {
   private ReportStatus reportStatus;
   private LocalDateTime createdAt;
 
-  public static ReportApiResponse fromEntity(Report report, User postUser) {
+  public static ReportApiResponse fromEntity(Report report) {
     return ReportApiResponse.builder()
             .id(report.getId())
             .postId(report.getPost().getId())
             .title(report.getPost().getTitle())
-            .postUserNickname(postUser.getUsername())
+            .postUserNickname(report.getPost().getUser().getUsername())
             .reportUserNickname(report.getReportUser().getUsername())
             .reason(report.getReason())
             .reportType(report.getReportType())
