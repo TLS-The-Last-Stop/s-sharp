@@ -65,7 +65,7 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 |      김혁진       |       👑김다은     |   한유리         |  조요한        |       이수완        |
 | :----------------: | :-----------------: | :-----------------: | :----------------: | :----------------: |
-|   ![image](https://github.com/user-attachments/assets/7dc87228-47b1-4223-aebe-274929602d93)   |   ![image](https://github.com/user-attachments/assets/cfd32868-abec-4ee4-9d79-841779c844e8)  | ![image](https://github.com/user-attachments/assets/dd09b103-1d03-431d-8e13-da7af174fced) | ![image](https://github.com/user-attachments/assets/a0b7ed59-bb5d-4595-b43c-cbdb499a0e31) |   ![image](https://github.com/user-attachments/assets/b99e243e-19ec-4c9b-9bda-450b075a606f)    |
+|  ![image](https://github.com/user-attachments/assets/67c94fab-e401-4e16-a682-a63962709b0d) |   ![image](https://github.com/user-attachments/assets/cfd32868-abec-4ee4-9d79-841779c844e8)  | ![image](https://github.com/user-attachments/assets/dd09b103-1d03-431d-8e13-da7af174fced) | ![image](https://github.com/user-attachments/assets/a0b7ed59-bb5d-4595-b43c-cbdb499a0e31) |   ![image](https://github.com/user-attachments/assets/b99e243e-19ec-4c9b-9bda-450b075a606f)    |
 |   [@hyoekjin](https://github.com/HS-hyeokjin)   |    [@daeun](https://github.com/kde0707)  | [@YUL554](https://github.com/YUL554)  | [@koreajohn](https://github.com/koreajohn) | [@ssuwwann](https://github.com/ssuwwann) |
 | 천재교육 풀스택6기 | 천재교육 풀스택6기 | 천재교육 풀스택6기 | 천재교육 풀스택6기 | 천재교육 풀스택6기 |
 
