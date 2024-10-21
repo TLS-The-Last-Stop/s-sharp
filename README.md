@@ -73,8 +73,6 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 ## 🛠 개발 환경 <a name="built-with"></a>
 
-### Tech Stack <a name="tech-stack"></a>
-
 <details>
   <summary>Client</summary>
   <ul>
