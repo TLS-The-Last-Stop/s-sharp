@@ -53,9 +53,7 @@ const MyPage = () => {
             </p>
           </div>
         </div>
-        <button className='mypage-btn btn-danger' onClick={handleDeleteAccount}>
-          회원 탈퇴
-        </button>
+
       </div>
     </section>
   );
