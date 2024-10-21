@@ -113,7 +113,7 @@ const PostGrid = () => {
                                     style={{
                                       marginRight: '5px',
                                       fontSize: '14px',
-                                      color: '#007bff',
+                                      color: '#BA932A',
                                     }}
                                 >
                         #{tag}

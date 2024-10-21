@@ -10,7 +10,7 @@ const LoginModal = ({ onClose }) => {
       <div className="modal" onClick={onClose}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <h2>로그인이 필요한 서비스입니다.</h2>
-          <button onClick={handleLoginRedirect}>로그인</button>
+          <button style={{background:'#FFC93A'}} className='btn btn-warning' onClick={handleLoginRedirect}>로그인</button>
         </div>
       </div>
   );

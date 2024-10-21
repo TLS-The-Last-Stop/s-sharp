@@ -54,7 +54,7 @@ const BookMarkDetails = () => {
                             <Accordion.Item eventKey={bookmark.id?.toString()} key={bookmark.id}>
                                 <Accordion.Header>
                                     <div className='d-flex align-items-center'>
-                                        <i className='ri-bookmark-fill me-2' style={{color: '#007bff'}}></i>
+                                        <i className='ri-bookmark-fill me-2' style={{color: '#FFC93A'}}></i>
                                         <span>{bookmark.post?.title || '제목 없음'}</span>
                                     </div>
                                 </Accordion.Header>
@@ -64,7 +64,7 @@ const BookMarkDetails = () => {
                                     <p>작성자: {bookmark.user?.username || '알 수 없음'}</p>
                                     {bookmark.post && (
                                         <a href={`/course-details/${bookmark.post.id}`}
-                                           className='btn btn-primary btn-sm'>
+                                           className='btn btn-warning btn-sm'>
                                             게시물로 이동
                                         </a>
                                     )}

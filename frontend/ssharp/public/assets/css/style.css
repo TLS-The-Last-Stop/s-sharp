@@ -4735,7 +4735,7 @@ Fixed top top bottom
 }
 .login-register-form button{
   color: #fff;
-  background-color: var(--theme-secondary-color) !important;
+  background-color: #FFC93A !important;
   width: 100%!important;
   transition: all .4s ease;
 }

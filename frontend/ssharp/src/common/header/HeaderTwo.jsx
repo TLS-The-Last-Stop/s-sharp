@@ -62,7 +62,7 @@ const HeaderTwo = () => {
 
               <div className='header-btn d-none d-xl-block'>
                 {accessToken ? (
-                    <button onClick={handleLogout} className='btn btn-main-2 btn-sm-2 rounded' type='button'>
+                    <button onClick={handleLogout} className='btn btn-warning btn-sm-2 rounded' type='button'>
                       로그아웃
                     </button>
                 ) : (
@@ -70,7 +70,7 @@ const HeaderTwo = () => {
                       <Link to='/login' className='login'>
                         로그인
                       </Link>
-                      <Link to='/register' className='btn btn-main-2 btn-sm-2 rounded'>
+                      <Link to='/register' className='btn btn-warning btn-sm-2 rounded'>
                         회원가입
                       </Link>
                     </>

@@ -88,7 +88,7 @@ const LoginForm = () => {
                 </div>
 
                 <div className='form-row'>
-                  <button type='submit' className='login-button'>
+                  <button type='submit' className='btn btn-warning login-button'>
                     로그인
                   </button>
                 </div>
