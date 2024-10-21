@@ -22,6 +22,10 @@ const Nav = () => {
       label: '북마크',
       link: `/bookmark-list/${userId.id}`,
     },
+    {
+      label: '내정보',
+      link: `/contact`,
+    },
   ]);
   useEffect(() => {
     setMenuItems((prevMenuItems) =>
