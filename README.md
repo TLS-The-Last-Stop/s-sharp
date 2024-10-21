@@ -59,6 +59,7 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 ![main](https://github.com/user-attachments/assets/d5fffa62-a17e-407e-9b97-5aa3e21c0655)  
 
+
 <br>
 
 ## 👨‍👩‍👦‍👦 웹개발팀 소개 <a name="authors"></a>
@@ -117,7 +118,7 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 ![image](https://github.com/user-attachments/assets/a57ffb90-33a6-462a-83be-4c64d6a612b3)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 <br>
 
@@ -125,7 +126,7 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 ### <a href="https://sulfuric-alphabet-1bc.notion.site/API-11b72fa24262810eb944fba317dd3cab?pvs=4" target="_blank"> 🌐 API 🌐 </a>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 <br>
 
@@ -205,7 +206,7 @@ ssharp/
         └── yarn.lock
 ```
 </details>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 <br>
 
@@ -273,7 +274,7 @@ ssharp/
 ---
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 <br>
 
@@ -285,7 +286,7 @@ ssharp/
 
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 <br>
 
@@ -317,7 +318,7 @@ Copycd backend
 mvn install
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 <br>
 
@@ -327,7 +328,7 @@ mvn install
 - AI 기반 학습 추천 시스템: 개인화된 학습 자료 추천
 - 화상 회의 통합: 실시간 온라인 스터디 그룹 지원
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 <br>
 
@@ -348,9 +349,11 @@ mvn install
 ### 이수완 - 신고, 관리자, FAQ
 신고의 조회수 구현을 통해 레디스라는 새로운 기술을 사용해 보았으며 보이는 화면 또한 react를 통해 구현해 새로운 기술을 공부하는 시간이 되어서 좋았지만 습득하는 데 시간이 걸려 완성도 있게 프로젝트를 마무리하지 못하여 아쉬움이 남기도 하였습니다. 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
 
 
 ## 📞 연락처 <a name="call"></a>
 
 프로젝트 관련 문의는 [TLS](https://github.com/TLS-The-Last-Stop)으로 문의주시길 바랍니다.
+
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
