@@ -1,0 +1,12 @@
+.social-login-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-login-btn {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  margin: 0 10px;
+}
