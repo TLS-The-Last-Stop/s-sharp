@@ -66,10 +66,10 @@ The core goal of **S-S#arp** is to create a safe community where students can sh
 
 ## 👨‍👩‍👦‍👦 웹개발팀 소개 <a name="authors"></a>
 
-|      김혁진       |       👑김다은     |   한유리         |  조요한        |       이수완        |
+|      👑김다은       |       김혁진    |   이수완         |  조요한        |       한유리        |
 | :----------------: | :-----------------: | :-----------------: | :----------------: | :----------------: |
-| ![image](https://github.com/user-attachments/assets/25e52caa-196d-44c0-b9d0-8269e8419105) |   ![image](https://github.com/user-attachments/assets/cfd32868-abec-4ee4-9d79-841779c844e8)  | ![image](https://github.com/user-attachments/assets/42cb937f-0f3c-48f9-a220-45dc875d09e9) | ![image](https://github.com/user-attachments/assets/a0b7ed59-bb5d-4595-b43c-cbdb499a0e31) |   ![image](https://github.com/user-attachments/assets/b99e243e-19ec-4c9b-9bda-450b075a606f)    |
-|   [@hyoekjin](https://github.com/HS-hyeokjin)   |    [@daeun](https://github.com/kde0707)  | [@YUL554](https://github.com/YUL554)  | [@koreajohn](https://github.com/koreajohn) | [@ssuwwann](https://github.com/ssuwwann) |
+| ![다은님](https://github.com/user-attachments/assets/cfd32868-abec-4ee4-9d79-841779c844e8) |  ![혁진님](https://github.com/user-attachments/assets/25e52caa-196d-44c0-b9d0-8269e8419105)   | ![수완님](https://github.com/user-attachments/assets/b99e243e-19ec-4c9b-9bda-450b075a606f) | ![요한님](https://github.com/user-attachments/assets/a0b7ed59-bb5d-4595-b43c-cbdb499a0e31) |    ![유리님](https://github.com/user-attachments/assets/42cb937f-0f3c-48f9-a220-45dc875d09e9)    |
+|   [@daeun](https://github.com/kde0707)   |    [@hyoekjin](https://github.com/HS-hyeokjin)  | [@ssuwwann](https://github.com/ssuwwann)  | [@koreajohn](https://github.com/koreajohn) | [@YUL554](https://github.com/YUL554) |
 | 천재 풀스택 6기 | 천재 풀스택 6기 | 천재 풀스택 6기 | 천재 풀스택 6기 | 천재 풀스택 6기 |
 
 <p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
