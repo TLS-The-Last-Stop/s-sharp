@@ -220,7 +220,6 @@ ssharp/
 | :-------------------------------------------: | :------------: | 
 |  ![메인](https://github.com/user-attachments/assets/b0227b01-b570-43b1-956f-c409b3f48651)   |  ![챗봇](https://github.com/user-attachments/assets/38203bab-aeb0-4c57-8ed9-325c9a9c4271) |  
 | 로그인 페이지   |   회원가입 페이지   |  
-| :-------------------------------------------: | :------------: | 
 | ![로그인](https://github.com/user-attachments/assets/01b556c2-f877-4ed2-82e9-85ba3a70c3e0) | ![회원가입](https://github.com/user-attachments/assets/63dc5e65-91a5-4479-83ba-346899353d9a)   |
 | 마이페이지  |    글 등록 페이지   |  
 | ![마이페이지](https://github.com/user-attachments/assets/bf9d94b7-6d2b-47a3-9201-b427f52bce0b) |  ![글 등록](https://github.com/user-attachments/assets/a67aa7a2-486d-450a-9c82-565b72e0e797)  | 
