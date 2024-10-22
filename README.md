@@ -22,6 +22,7 @@
   - [🛠 개발 환경](#built-with)
   - [📖 API 명세](#api)
   - [📂 프로젝트 구조](#project)
+  - [📺 화면 구성](#view)
   - [🔑 주요 기능](#key-features)
   - [🚀 시연영상](#live-demo)
 - [💻 시작하기](#getting-started)
@@ -213,6 +214,23 @@ ssharp/
 
 <br>
 
+## 📺 화면 구성 <a name="view"></a>
+
+| 메인 페이지  |  챗봇    |
+| :-------------------------------------------: | :------------: | 
+|  ![메인](https://github.com/user-attachments/assets/b0227b01-b570-43b1-956f-c409b3f48651)   |  ![챗봇](https://github.com/user-attachments/assets/38203bab-aeb0-4c57-8ed9-325c9a9c4271) |  
+| 로그인 페이지   |   회원가입 페이지   |  
+| ![로그인](https://github.com/user-attachments/assets/01b556c2-f877-4ed2-82e9-85ba3a70c3e0) | ![회원가입](https://github.com/user-attachments/assets/63dc5e65-91a5-4479-83ba-346899353d9a)   |
+| 마이페이지  |    글 등록 페이지   |  
+| ![마이페이지](https://github.com/user-attachments/assets/bf9d94b7-6d2b-47a3-9201-b427f52bce0b) |  ![글 등록](https://github.com/user-attachments/assets/a67aa7a2-486d-450a-9c82-565b72e0e797)  | 
+| 글 상세 페이지   |  북마크 목록 페이지  | 
+| ![글 상세](https://github.com/user-attachments/assets/279c17cd-23b8-4fcd-a91f-bae91c8496d6)  |  ![북마크 목록](https://github.com/user-attachments/assets/f3159196-5d80-4d14-a259-bcb1e101764b)  |
+| 관리자 신고 관리  | 관리자 차트 페이지 |
+| ![관리자 신](https://github.com/user-attachments/assets/c59e4e37-a517-4cf9-b5be-c8040f8c47c2) | ![관리자 차트](https://github.com/user-attachments/assets/e1620ae8-f14c-4afe-a4c5-0dfaa225b5b5) |
+
+<p align="right"><a href="#readme-top">⬆️ Top ⬆️</a></p>
+
+<br>
 
 ## 🔑 주요 기능 <a name="key-features"></a>
 
